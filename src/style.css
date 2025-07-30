@@ -4,6 +4,7 @@ body {
   font-style: normal;
   font-size: 1rem;
   margin: 0;
+  background-color: #F2F2F2;
 }
 
 header {
@@ -17,7 +18,10 @@ header {
 nav ul {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 ul {
@@ -29,6 +33,91 @@ a {
   color: black;
 }
 
-.plyr__video-embed iframe {
-  pointer-events: none;
+.logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Showreel video styling */
+.showreel {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1920 / 810;
+  /* 2.35:1 cinematic ratio */
+}
+
+#player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* This will crop the video to fill the container */
+  object-position: center;
+  /* Center the crop */
+}
+
+.services {
+  padding: 4rem;
+}
+
+.services_title {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.service_category {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service_category:hover {
+  transform: translateY(-5px);
+}
+
+.service_category h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.service_category p {
+  line-height: 1.6;
+  max-width: 45ch;
+  margin: 0;
+}
+
+/* Responsive grid layout */
+@media (min-width: 768px) {
+  .services {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 4rem;
+  }
+
+  .services_title {
+    grid-column: 1 / -1;
+    margin-bottom: 2rem;
+    font-size: 10rem;
+    font-weight: 600;
+  }
+
+  .service_category {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .services {
+    padding: 2rem 1rem;
+  }
+
+  .service_category {
+    margin-bottom: 1.5rem;
+  }
+
+  .service_category h2 {
+    font-size: 1.3rem;
+  }
 }

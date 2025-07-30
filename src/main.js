@@ -1,25 +1,31 @@
-import Plyr from 'plyr';
-import 'plyr/dist/plyr.css';
+// Native HTML5 video player for showreel
+const video = document.getElementById('player');
 
-const player = new Plyr('#player', {
-    autoplay: true,
-    muted: true,
-    loop: { active: true }, // Enable looping
-    controls: [], // Empty array hides all controls
-    hideControls: true, // Hide controls when not hovering
-    youtube: {
-        noCookie: true, // Use YouTube's privacy-enhanced mode
-        rel: 0, // Don't show related videos
-        showinfo: 0, // Hide video info
-        iv_load_policy: 3, // Hide video annotations
-        modestbranding: 1, // Hide YouTube logo
-        controls: 0, // Hide YouTube's native controls
+// Toggle sound on click
+let soundEnabled = false;
+
+video.addEventListener('click', () => {
+    if (!soundEnabled) {
+        // Turn sound on
+        video.muted = false;
+        video.volume = 1.0;
+        soundEnabled = true;
+        console.log('Sound enabled!');
+
+        // Force play to ensure audio context is activated
+        video.play().catch(e => console.log('Play error:', e));
+    } else {
+        // Turn sound off
+        video.muted = true;
+        soundEnabled = false;
+        console.log('Sound disabled!');
     }
 });
 
-player.on('pause', () => {
-    player.play();
+// Prevent pausing - auto-resume if paused
+video.addEventListener('pause', () => {
+    video.play();
 });
 
-window.player = player;
+window.player = video;
 
