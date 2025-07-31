@@ -1,7 +1,7 @@
 // Load and display projects
 async function loadProjects() {
     try {
-        const response = await fetch('./src/projects.json');
+        const response = await fetch('/projects.json');
         const data = await response.json();
         return data.projects;
     } catch (error) {
@@ -23,7 +23,6 @@ function createProjectCard(project) {
                     <div class="project-info">
                         <h3>${project.title}</h3>
                         <p class="project-year">${project.year}</p>
-                        <p class="project-duration">${project.duration || ''}</p>
                     </div>
                 </div>
             </div>

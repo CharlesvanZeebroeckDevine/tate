@@ -7,7 +7,7 @@ function getProjectIdFromUrl() {
 // Load projects data
 async function loadProjects() {
     try {
-        const response = await fetch('./src/projects.json');
+        const response = await fetch('/projects.json');
         const data = await response.json();
         return data.projects;
     } catch (error) {
