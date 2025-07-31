@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./Logotype.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <title>Project Detail - Tate Edits</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <a class="logo" href="./index.html">
+                TATE EDITS
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="./projects.html">Projets</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="project-detail-container">
+            <div class="back-button">
+                <a href="./projects.html" class="back-link">
+                    ← Back to Projects
+                </a>
+            </div>
+
+            <div class="project-hero">
+                <div class="project-video-container">
+                    <video id="projectVideo" playsinline controls>
+                        <source src="" type="video/mp4">
+                        Your browser doesn't support HTML5 video.
+                    </video>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <div class="project-header">
+                    <h1 id="projectTitle">Project Title</h1>
+                    <div class="project-meta">
+                        <span id="projectYear" class="project-year">2024</span>
+                        <span id="projectClient" class="project-client">Client Name</span>
+                    </div>
+                </div>
+
+                <div class="project-description">
+                    <p id="projectDescription">Project description will be loaded here...</p>
+                </div>
+
+                <div class="project-details-grid">
+                    <div class="project-skills-section">
+                        <h3>Skills Used</h3>
+                        <div id="projectSkills" class="skills-list">
+                            <!-- Skills will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="project-collaborators-section">
+                        <h3>Collaborators</h3>
+                        <div id="projectCollaborators" class="collaborators-list">
+                            <!-- Collaborators will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script type="module" src="./src/project-detail.js"></script>
+</body>
+
+</html>
