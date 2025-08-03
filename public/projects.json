@@ -101,7 +101,7 @@
             "year": 2024,
             "client": "Kaaris",
             "description": "Second installment of Kaaris Defense with enhanced visual storytelling.",
-            "videoUrl": "./videos/KaarisDefense2.mp4",
+            "videoUrl": "./videos/KaarisDefensePart2.mp4",
             "thumbnail": "./thumbnails/kaaris-defense2.jpg",
             "skills": [
                 "Video Editing",
@@ -273,7 +273,7 @@
             "year": 2024,
             "client": "Galions",
             "description": "Music video for Galions featuring dynamic editing and urban aesthetics.",
-            "videoUrl": "./videos/Galions.mp4",
+            "videoUrl": "./videos/GalionsTiktok.mp4",
             "thumbnail": "./thumbnails/galions.jpg",
             "skills": [
                 "Video Editing",
@@ -292,7 +292,7 @@
             "year": 2023,
             "client": "Personal Project",
             "description": "Personal documentary project featuring storytelling and atmospheric editing.",
-            "videoUrl": "./videos/Docu.mp4",
+            "videoUrl": "./videos/Documentaire.mp4",
             "thumbnail": "./thumbnails/Docu.jpg",
             "skills": [
                 "Documentary",
@@ -309,7 +309,7 @@
             "year": 2023,
             "client": "Personal Project",
             "description": "Travel documentary capturing the essence of Japanese culture through storytelling and atmospheric editing.",
-            "videoUrl": "./videos/Japon1.mp4",
+            "videoUrl": "./videos/JaponPart1.mp4",
             "thumbnail": "./thumbnails/japan1.jpg",
             "skills": [
                 "Documentary",
@@ -327,7 +327,7 @@
             "year": 2023,
             "client": "Personal Project",
             "description": "Second part of the Japan travel documentary with continued storytelling and cultural exploration.",
-            "videoUrl": "./videos/Japon2.mp4",
+            "videoUrl": "./videos/JaponPart2.mp4",
             "thumbnail": "./thumbnails/japan2.jpg",
             "skills": [
                 "Documentary",
