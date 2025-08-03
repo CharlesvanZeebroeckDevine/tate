@@ -15,7 +15,16 @@ function createProjectCard(project) {
     return `
         <div class="project-card" data-category="${project.category.toLowerCase()}" data-project-id="${project.id}">
             <div class="project-video">
-                <img src=""${project.thumbnails}"" alt="${project.title}">
+                <video playsinline muted loop>
+                    <source src="${project.videoUrl}" type="video/mp4">
+                    Your browser doesn't support HTML5 video.
+                </video>
+                <div class="project-overlay">
+                    <div class="project-info">
+                        <h3>${project.title}</h3>
+                        <p class="project-year">${project.year}</p>
+                    </div>
+                </div>
             </div>
             <div class="project-details">
                 <p class="project-client">${project.client}</p>
