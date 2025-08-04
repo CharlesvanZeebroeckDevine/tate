@@ -14,17 +14,9 @@ async function loadProjects() {
 function createProjectCard(project) {
     return `
         <div class="project-card" data-category="${project.category.toLowerCase()}" data-project-id="${project.id}">
-            <div class="project-video">
-                <video playsinline muted loop>
-                    <source src="${project.videoUrl}" type="video/mp4">
-                    Your browser doesn't support HTML5 video.
-                </video>
-                <div class="project-overlay">
-                    <div class="project-info">
-                        <h3>${project.title}</h3>
-                        <p class="project-year">${project.year}</p>
-                    </div>
-                </div>
+            <div class="project-thumbnail">
+                <img src="${project.thumbnail}" alt="${project.title}">
+                ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
             </div>
             <div class="project-details">
                 <p class="project-client">${project.client}</p>
@@ -74,41 +66,11 @@ async function initProjects() {
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
-
             const projectId = card.dataset.projectId;
             if (projectId) {
                 window.location.href = `./project-detail.html?id=${projectId}`;
             }
         });
-    });
-
-    // Initialize video players
-    initializeVideoPlayers();
-}
-
-// Initialize video players with Plyr
-function initializeVideoPlayers() {
-    const videos = document.querySelectorAll('.project-card video');
-    videos.forEach(video => {
-        const player = new Plyr(video, {
-            controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-            autoplay: false,
-            muted: true,
-            loop: true
-        });
-
-        // Pause video when not in viewport
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Video is visible
-                } else {
-                    player.pause();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        observer.observe(video);
     });
 }
 

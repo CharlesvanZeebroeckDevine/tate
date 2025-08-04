@@ -1,13 +1,12 @@
 {
     "projects": [
         {
-            "id": 1,
+            "id": 8,
             "title": "THE CHOSEN ONE",
-            "year": 2024,
+            "year": 2025,
             "client": "Kcorp",
             "description": "E-sport content featuring dynamic sound design, motion graphics, and color grading for Kcorp's competitive gaming brand.",
-            "videoUrl": "./videos/TheChosenOne.mp4",
-            "thumbnail": "./thumbnails/kcorp.jpg",
+            "thumbnail": "./thumbnails/Kcorp.png",
             "skills": [
                 "Sound Design",
                 "Motion Graphics",
@@ -17,130 +16,74 @@
                 "Kcorp"
             ],
             "category": "E-sport",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "kcorp-1",
+                    "title": "THE CHOSEN ONE",
+                    "videoUrl": "./videos/TheChosenOne.mp4"
+                }
+            ]
         },
         {
             "id": 2,
-            "title": "Kaaris - BDX",
-            "year": 2024,
+            "title": "Kaaris",
+            "year": 2025,
             "client": "Kaaris",
-            "description": "Music video for Kaaris featuring dynamic editing and urban aesthetics.",
-            "videoUrl": "./videos/KaarisBdx.mp4",
-            "thumbnail": "./thumbnails/kaaris-bdx.jpg",
+            "description": "Music videos for Kaaris featuring dynamic editing, urban aesthetics, and cinematic storytelling across multiple tracks.",
+            "thumbnail": "./thumbnails/K2A.png",
             "skills": [
                 "Video Editing",
                 "Music Video",
-                "Color Grading"
+                "Color Grading",
+                "VFX",
+                "Cinematography"
             ],
             "collaborators": [
                 "Kaaris"
             ],
             "category": "Music",
-            "format": "v"
+            "format": "v",
+            "videos": [
+                {
+                    "id": "kaaris-1",
+                    "title": "Kaaris - BDX",
+                    "videoUrl": "./videos/KaarisBdx.mp4"
+                },
+                {
+                    "id": "kaaris-2",
+                    "title": "Kaaris - BDX 2",
+                    "videoUrl": "./videos/KaarisBdx2.mp4"
+                },
+                {
+                    "id": "kaaris-3",
+                    "title": "Kaaris - Montage",
+                    "videoUrl": "./videos/KaarisMontage.mp4"
+                },
+                {
+                    "id": "kaaris-4",
+                    "title": "Kaaris - Defense",
+                    "videoUrl": "./videos/KaarisDefense.mp4"
+                },
+                {
+                    "id": "kaaris-5",
+                    "title": "Kaaris - Defense 2",
+                    "videoUrl": "./videos/KaarisDefensePart2.mp4"
+                },
+                {
+                    "id": "kaaris-6",
+                    "title": "Kaaris - Ardentes",
+                    "videoUrl": "./videos/KaarisArdentes.mp4"
+                }
+            ]
         },
         {
             "id": 3,
-            "title": "Kaaris - BDX 2",
-            "year": 2024,
-            "client": "Kaaris",
-            "description": "Second music video for Kaaris with enhanced visual effects and editing.",
-            "videoUrl": "./videos/KaarisBdx2.mp4",
-            "thumbnail": "./thumbnails/kaaris-bdx2.jpg",
-            "skills": [
-                "Video Editing",
-                "Music Video",
-                "VFX"
-            ],
-            "collaborators": [
-                "Kaaris"
-            ],
-            "category": "Music",
-            "format": "v"
-        },
-        {
-            "id": 4,
-            "title": "Kaaris - Montage",
-            "year": 2024,
-            "client": "Kaaris",
-            "description": "Compilation of Kaaris music video highlights with dynamic editing.",
-            "videoUrl": "./videos/KaarisMontage.mp4",
-            "thumbnail": "./thumbnails/kaaris-montage.jpg",
-            "skills": [
-                "Video Editing",
-                "Compilation",
-                "Color Grading"
-            ],
-            "collaborators": [
-                "Kaaris"
-            ],
-            "category": "Music",
-            "format": "v"
-        },
-        {
-            "id": 5,
-            "title": "Kaaris - Defense",
-            "year": 2024,
-            "client": "Kaaris",
-            "description": "Music video for Kaaris Defense with cinematic editing and effects.",
-            "videoUrl": "./videos/KaarisDefense.mp4",
-            "thumbnail": "./thumbnails/kaaris-defense.jpg",
-            "skills": [
-                "Video Editing",
-                "Cinematography",
-                "VFX"
-            ],
-            "collaborators": [
-                "Kaaris"
-            ],
-            "category": "Music",
-            "format": "v"
-        },
-        {
-            "id": 6,
-            "title": "Kaaris - Defense 2",
-            "year": 2024,
-            "client": "Kaaris",
-            "description": "Second installment of Kaaris Defense with enhanced visual storytelling.",
-            "videoUrl": "./videos/KaarisDefensePart2.mp4",
-            "thumbnail": "./thumbnails/kaaris-defense2.jpg",
-            "skills": [
-                "Video Editing",
-                "Storytelling",
-                "VFX"
-            ],
-            "collaborators": [
-                "Kaaris"
-            ],
-            "category": "Music",
-            "format": "v"
-        },
-        {
-            "id": 7,
-            "title": "Kaaris - Ardentes",
-            "year": 2024,
-            "client": "Kaaris",
-            "description": "Music video for Kaaris Ardentes featuring dynamic editing and urban aesthetics.",
-            "videoUrl": "./videos/KaarisArdentes.mp4",
-            "thumbnail": "./thumbnails/kaaris-ardentes.jpg",
-            "skills": [
-                "Video Editing",
-                "Urban Aesthetics",
-                "Color Grading"
-            ],
-            "collaborators": [
-                "Kaaris"
-            ],
-            "category": "Music",
-            "format": "v"
-        },
-        {
-            "id": 8,
-            "title": "Djadja & Dinaz",
-            "year": 2024,
-            "client": "Djadja & Dinaz",
+            "title": "Djadja & Dinaz - Foot Korner",
+            "year": 2025,
+            "client": "Foot Korner",
             "description": "Music video collaboration featuring dynamic editing and urban culture.",
-            "videoUrl": "./videos/DjadjaDinaz.mp4",
-            "thumbnail": "./thumbnails/djadja-dinaz.jpg",
+            "thumbnail": "./thumbnails/FootKorner.png",
             "skills": [
                 "Video Editing",
                 "Collaboration",
@@ -151,35 +94,47 @@
                 "Dinaz"
             ],
             "category": "Music",
-            "format": "v"
+            "format": "v",
+            "videos": [
+                {
+                    "id": "djadja-1",
+                    "title": "Djadja & Dinaz - Foot Korner",
+                    "videoUrl": "./videos/DjadjaDinaz.mp4"
+                }
+            ]
         },
         {
-            "id": 9,
-            "title": "Gin Kao",
-            "year": 2024,
-            "client": "Gin Kao",
-            "description": "Music video for Gin Kao with dynamic editing and visual effects.",
-            "videoUrl": "./videos/GinKao.mp4",
-            "thumbnail": "./thumbnails/gin-kao.jpg",
+            "id": 4,
+            "title": "Gin Khao",
+            "year": 2025,
+            "client": "Gin Khao",
+            "description": "Music video for Gin Khao with dynamic editing and visual effects.",
+            "thumbnail": "./thumbnails/GinKhao.png",
             "skills": [
                 "Video Editing",
                 "VFX",
                 "Color Grading"
             ],
             "collaborators": [
-                "Gin Kao"
+                "Gin Khao"
             ],
             "category": "Music",
-            "format": "v"
+            "format": "v",
+            "videos": [
+                {
+                    "id": "gin-kao-1",
+                    "title": "Gin Kao",
+                    "videoUrl": "./videos/GinKao.mp4"
+                }
+            ]
         },
         {
-            "id": 10,
+            "id": 5,
             "title": "Zoxii",
             "year": 2024,
             "client": "Zoxii",
-            "description": "video for Zoxii featuring dynamic editing and urban aesthetics.",
-            "videoUrl": "./videos/zoxii.mp4",
-            "thumbnail": "./thumbnails/zoxii.jpg",
+            "description": "Video for Zoxii featuring dynamic editing and urban aesthetics.",
+            "thumbnail": "./thumbnails/Zoxi.png",
             "skills": [
                 "Video Editing",
                 "Urban Aesthetics",
@@ -189,54 +144,22 @@
                 "Zoxii"
             ],
             "category": "E-sport",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "zoxii-1",
+                    "title": "Zoxii",
+                    "videoUrl": "./videos/zoxii.mp4"
+                }
+            ]
         },
         {
-            "id": 11,
-            "title": "Tiktok for Emea",
-            "year": 2024,
-            "client": "EMEA",
-            "description": "Music video for EMEA with dynamic editing and visual effects.",
-            "videoUrl": "./videos/emea.mp4",
-            "thumbnail": "./thumbnails/emea.jpg",
-            "skills": [
-                "Video Editing",
-                "VFX",
-                "Color Grading"
-            ],
-            "collaborators": [
-                "EMEA"
-            ],
-            "category": "E-sport",
-            "format": "v"
-        },
-        {
-            "id": 12,
-            "title": "Tiktok for Emea",
-            "year": 2024,
-            "client": "EMEA",
-            "description": "Esport video for Garen featuring dynamic editing and urban culture.",
-            "videoUrl": "./videos/Garen.mp4",
-            "thumbnail": "./thumbnails/garen.jpg",
-            "skills": [
-                "Video Editing",
-                "Urban Culture",
-                "Motion Graphics"
-            ],
-            "collaborators": [
-                "Garen"
-            ],
-            "category": "E-sport",
-            "format": "v"
-        },
-        {
-            "id": 13,
+            "id": 1,
             "title": "Steel",
-            "year": 2024,
+            "year": 2025,
             "client": "Steel",
             "description": "Music video for Steel with dynamic editing and visual effects.",
-            "videoUrl": "./videos/Steel.mp4",
-            "thumbnail": "./thumbnails/steel.jpg",
+            "thumbnail": "./thumbnails/Steel.png",
             "skills": [
                 "Video Editing",
                 "VFX",
@@ -246,16 +169,22 @@
                 "Steel"
             ],
             "category": "E-sport",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "steel-1",
+                    "title": "Steel",
+                    "videoUrl": "./videos/Steel.mp4"
+                }
+            ]
         },
         {
-            "id": 14,
+            "id": 9,
             "title": "Rain GG",
-            "year": 2024,
+            "year": 2025,
             "client": "Rain GG",
             "description": "Gaming content for Rain GG with dynamic editing and visual effects.",
-            "videoUrl": "./videos/RainGG.mp4",
-            "thumbnail": "./thumbnails/rain-gg.jpg",
+            "thumbnail": "./thumbnails/raingg.png",
             "skills": [
                 "Video Editing",
                 "Gaming Content",
@@ -265,16 +194,22 @@
                 "Rain GG"
             ],
             "category": "E-sport",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "rain-gg-1",
+                    "title": "Rain GG",
+                    "videoUrl": "./videos/RainGG.mp4"
+                }
+            ]
         },
         {
-            "id": 15,
+            "id": 10,
             "title": "Galions",
-            "year": 2024,
+            "year": 2025,
             "client": "Galions",
-            "description": "Music video for Galions featuring dynamic editing and urban aesthetics.",
-            "videoUrl": "./videos/GalionsTiktok.mp4",
-            "thumbnail": "./thumbnails/galions.jpg",
+            "description": "videos for Galions featuring dynamic editing and urban aesthetics.",
+            "thumbnail": "./thumbnails/Gallions.png",
             "skills": [
                 "Video Editing",
                 "Urban Aesthetics",
@@ -284,16 +219,32 @@
                 "Galions"
             ],
             "category": "E-sport",
-            "format": "v"
+            "format": "v",
+            "videos": [
+                {
+                    "id": "galions-1",
+                    "title": "Galions",
+                    "videoUrl": "./videos/GalionsTiktok.mp4"
+                },
+                {
+                    "id": "galions-2",
+                    "title": "Garen",
+                    "videoUrl": "./videos/Garen.mp4"
+                },
+                {
+                    "id": "galions-3",
+                    "title": "Emea",
+                    "videoUrl": "./videos/emea.mp4"
+                }
+            ]
         },
         {
-            "id": 16,
+            "id": 11,
             "title": "Documentary",
-            "year": 2023,
+            "year": 2025,
             "client": "Personal Project",
             "description": "Personal documentary project featuring storytelling and atmospheric editing.",
-            "videoUrl": "./videos/Documentaire.mp4",
-            "thumbnail": "./thumbnails/Docu.jpg",
+            "thumbnail": "./thumbnails/Documentary.png",
             "skills": [
                 "Documentary",
                 "Storytelling",
@@ -301,16 +252,22 @@
             ],
             "collaborators": [],
             "category": "Perso",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "docu-1",
+                    "title": "Documentary",
+                    "videoUrl": "./videos/Documentaire.mp4"
+                }
+            ]
         },
         {
-            "id": 17,
-            "title": "Japan Travel - Part 1",
-            "year": 2023,
+            "id": 12,
+            "title": "Japan Travel",
+            "year": 2025,
             "client": "Personal Project",
             "description": "Travel documentary capturing the essence of Japanese culture through storytelling and atmospheric editing.",
-            "videoUrl": "./videos/JaponPart1.mp4",
-            "thumbnail": "./thumbnails/japan1.jpg",
+            "thumbnail": "./thumbnails/Japan.png",
             "skills": [
                 "Documentary",
                 "Travel",
@@ -319,25 +276,19 @@
             ],
             "collaborators": [],
             "category": "Perso",
-            "format": "h"
-        },
-        {
-            "id": 18,
-            "title": "Japan Travel - Part 2",
-            "year": 2023,
-            "client": "Personal Project",
-            "description": "Second part of the Japan travel documentary with continued storytelling and cultural exploration.",
-            "videoUrl": "./videos/JaponPart2.mp4",
-            "thumbnail": "./thumbnails/japan2.jpg",
-            "skills": [
-                "Documentary",
-                "Travel",
-                "Storytelling",
-                "Cinematography"
-            ],
-            "collaborators": [],
-            "category": "Perso",
-            "format": "h"
+            "format": "h",
+            "videos": [
+                {
+                    "id": "japan-1",
+                    "title": "Japan Travel - Part 1",
+                    "videoUrl": "./videos/JaponPart1.mp4"
+                },
+                {
+                    "id": "japan-2",
+                    "title": "Japan Travel - Part 2",
+                    "videoUrl": "./videos/JaponPart2.mp4"
+                }
+            ]
         }
     ]
 }
