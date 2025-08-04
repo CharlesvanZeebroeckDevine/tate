@@ -8,9 +8,9 @@
             "description": "E-sport content featuring dynamic sound design, motion graphics, and color grading for Kcorp's competitive gaming brand.",
             "thumbnail": "./thumbnails/Kcorp.png",
             "skills": [
-                "Sound Design",
-                "Motion Graphics",
-                "Color Grading"
+                "Sound-Design",
+                "Motion",
+                "Montage"
             ],
             "collaborators": [
                 "Kcorp"
@@ -33,11 +33,10 @@
             "description": "Music videos for Kaaris featuring dynamic editing, urban aesthetics, and cinematic storytelling across multiple tracks.",
             "thumbnail": "./thumbnails/K2A.png",
             "skills": [
-                "Video Editing",
-                "Music Video",
-                "Color Grading",
-                "VFX",
-                "Cinematography"
+                "Montage",
+                "Motion",
+                "Sound-Design",
+                "Prise de vue"
             ],
             "collaborators": [
                 "Kaaris"
@@ -85,9 +84,8 @@
             "description": "Music video collaboration featuring dynamic editing and urban culture.",
             "thumbnail": "./thumbnails/FootKorner.png",
             "skills": [
-                "Video Editing",
-                "Collaboration",
-                "Urban Culture"
+                "Montage",
+                "Sound-Design"
             ],
             "collaborators": [
                 "Djadja",
@@ -111,9 +109,8 @@
             "description": "Music video for Gin Khao with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/GinKhao.png",
             "skills": [
-                "Video Editing",
-                "VFX",
-                "Color Grading"
+                "Montage",
+                "Motion"
             ],
             "collaborators": [
                 "Gin Khao"
@@ -136,9 +133,8 @@
             "description": "Video for Zoxii featuring dynamic editing and urban aesthetics.",
             "thumbnail": "./thumbnails/Zoxi.png",
             "skills": [
-                "Video Editing",
-                "Urban Aesthetics",
-                "Motion Graphics"
+                "Montage",
+                "Motion"
             ],
             "collaborators": [
                 "Zoxii"
@@ -161,9 +157,8 @@
             "description": "Music video for Steel with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/Steel.png",
             "skills": [
-                "Video Editing",
-                "VFX",
-                "Color Grading"
+                "Montage",
+                "Motion"
             ],
             "collaborators": [
                 "Steel"
@@ -186,9 +181,8 @@
             "description": "Gaming content for Rain GG with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/raingg.png",
             "skills": [
-                "Video Editing",
-                "Gaming Content",
-                "VFX"
+                "Montage",
+                "Sound-Design"
             ],
             "collaborators": [
                 "Rain GG"
@@ -211,9 +205,10 @@
             "description": "videos for Galions featuring dynamic editing and urban aesthetics.",
             "thumbnail": "./thumbnails/Gallions.png",
             "skills": [
-                "Video Editing",
-                "Urban Aesthetics",
-                "Motion Graphics"
+                "Montage",
+                "Motion",
+                "Sound-Design",
+                "Prise de vue"
             ],
             "collaborators": [
                 "Galions"
@@ -246,9 +241,9 @@
             "description": "Personal documentary project featuring storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Documentary.png",
             "skills": [
-                "Documentary",
-                "Storytelling",
-                "Cinematography"
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
             ],
             "collaborators": [],
             "category": "Perso",
@@ -263,16 +258,15 @@
         },
         {
             "id": 12,
-            "title": "Japan Travel",
+            "title": "Voyage au Japon",
             "year": 2025,
             "client": "Personal Project",
             "description": "Travel documentary capturing the essence of Japanese culture through storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Japan.png",
             "skills": [
-                "Documentary",
-                "Travel",
-                "Storytelling",
-                "Cinematography"
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
             ],
             "collaborators": [],
             "category": "Perso",

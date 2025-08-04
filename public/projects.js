@@ -1,3 +1,16 @@
+const SKILL_FILTERS = [
+    { key: 'Sound-Design', label: 'Sound-Design' },
+    { key: 'Prise de vue', label: 'Prise de vue' },
+    { key: 'Montage', label: 'Montage' },
+    { key: 'Motion', label: 'Motion' }
+];
+
+// Get filter from URL parameters
+function getFilterFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('filter');
+}
+
 // Load and display projects
 async function loadProjects() {
     try {
@@ -13,10 +26,11 @@ async function loadProjects() {
 // Create project card HTML
 function createProjectCard(project) {
     return `
-        <div class="project-card" data-category="${project.category.toLowerCase()}" data-project-id="${project.id}">
+        <div class="project-card" data-skills="${project.skills.join(',')}" data-project-id="${project.id}">
             <div class="project-thumbnail">
                 <img src="${project.thumbnail}" alt="${project.title}">
                 ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
+                <span class="category-tag">${project.category}</span>
             </div>
             <div class="project-details">
                 <p class="project-client">${project.client}</p>
@@ -26,21 +40,36 @@ function createProjectCard(project) {
     `;
 }
 
-// Filter projects by category
-function filterProjects(category) {
+// Render filter buttons
+function renderFilterButtons() {
+    const filterButtonsContainer = document.querySelector('.filter_buttons');
+    filterButtonsContainer.innerHTML = `
+        <button class="filter-btn active" data-skill="all">All</button>
+        ${SKILL_FILTERS.map(skill => `<button class="filter-btn" data-skill="${skill.key}">${skill.label}</button>`).join('')}
+    `;
+}
+
+// Filter projects by skill
+function filterProjects(skill) {
     const projectCards = document.querySelectorAll('.project-card');
     const filterButtons = document.querySelectorAll('.filter-btn');
 
     // Update active button
     filterButtons.forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    const activeBtn = Array.from(filterButtons).find(btn => btn.dataset.skill === skill);
+    if (activeBtn) activeBtn.classList.add('active');
 
     // Filter projects
     projectCards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category.toLowerCase()) {
+        if (skill === 'all') {
             card.style.display = 'block';
         } else {
-            card.style.display = 'none';
+            const projectSkills = card.dataset.skills.split(',');
+            if (projectSkills.includes(skill)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
         }
     });
 }
@@ -53,12 +82,13 @@ async function initProjects() {
     // Display all projects
     projectsGrid.innerHTML = projects.map(project => createProjectCard(project)).join('');
 
-    // Add event listeners for filter buttons
+    // Render and add event listeners for filter buttons
+    renderFilterButtons();
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
-            const category = e.target.dataset.category;
-            filterProjects(category);
+            const skill = e.target.dataset.skill;
+            filterProjects(skill);
         });
     });
 
@@ -72,7 +102,12 @@ async function initProjects() {
             }
         });
     });
+
+    // Check for filter parameter in URL and apply it
+    const urlFilter = getFilterFromUrl();
+    if (urlFilter) {
+        filterProjects(urlFilter);
+    }
 }
 
-// Load projects when DOM is ready
 document.addEventListener('DOMContentLoaded', initProjects); 

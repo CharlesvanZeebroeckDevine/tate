@@ -37,11 +37,12 @@ function updateProjectDetail(project, videoIndex = 0) {
     // Update page title
     document.title = `${video.title} - ${project.title} - Tate Edits`;
 
-    // Apply format-based CSS class for styling
-    const videoContainer = document.querySelector('.project-video-container');
-    videoContainer.className = `project-video-container format-${project.format}`;
+    // Apply format-based CSS class to the entire container
+    const projectContainer = document.querySelector('.project-detail-container');
+    projectContainer.className = `project-detail-container format-${project.format}`;
 
     // Create video player
+    const videoContainer = document.querySelector('.project-video-container');
     videoContainer.innerHTML = `
         <video id="projectVideo" playsinline controls>
             <source src="${video.videoUrl}" type="video/mp4">
