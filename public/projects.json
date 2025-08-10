@@ -211,7 +211,8 @@
                 "Prise de vue"
             ],
             "collaborators": [
-                "Galions"
+                "Galions",
+                "Robert"
             ],
             "category": "E-sport",
             "format": "v",
@@ -235,9 +236,9 @@
         },
         {
             "id": 11,
-            "title": "Documentary",
+            "title": "Les Rois sans couronnes",
             "year": 2025,
-            "client": "Personal Project",
+            "client": "Documentaire",
             "description": "Personal documentary project featuring storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Documentary.png",
             "skills": [
@@ -260,7 +261,7 @@
             "id": 12,
             "title": "Voyage au Japon",
             "year": 2025,
-            "client": "Personal Project",
+            "client": "Japon",
             "description": "Travel documentary capturing the essence of Japanese culture through storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Japan.png",
             "skills": [
