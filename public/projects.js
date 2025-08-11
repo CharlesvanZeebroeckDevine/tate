@@ -33,7 +33,10 @@ function createProjectCard(project) {
                 <span class="category-tag">${project.category}</span>
             </div>
             <div class="project-details">
+            <div class="details-left">
                 <p class="project-client">${project.client}</p>
+                <p class="project-category">${project.category}</p>
+                </div>
                 <p class="project-year">${project.year}</p>
             </div>
         </div>

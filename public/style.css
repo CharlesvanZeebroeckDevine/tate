@@ -144,7 +144,7 @@ a {
 
 .filter-btn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid #1B1D1D;
+  border: 1px solid #1B1D1D;
   background: transparent;
   color: #1B1D1D;
   font-family: "DM Sans", sans-serif;
@@ -156,7 +156,8 @@ a {
 
 .filter-btn:hover,
 .filter-btn.active {
-  background: #1B1D1D;
+  background: #E65B39;
+  border: 1px solid #E65B39;
   color: #F2F2F2;
 }
 
@@ -212,6 +213,7 @@ a {
 }
 
 .project-details {
+  margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
 }
@@ -449,10 +451,6 @@ a {
     gap: 1.5rem;
   }
 
-  .project-details {
-    padding: 1rem;
-  }
-
   .video-count-badge {
     top: 0.75rem;
     right: 0.75rem;
@@ -501,7 +499,7 @@ a {
 /* Mobile adjustments */
 @media (max-width: 767px) {
   header {
-    padding: 0.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -535,4 +533,76 @@ a {
   .service_category h2 {
     font-size: 1.3rem;
   }
+
+  .services_title {
+    font-size: 3rem;
+    margin-top: 2rem;
+  }
+
+  .services_container {
+    grid-template-columns: 1fr;
+  }
+
+  .showreel {
+    margin-top: 2rem
+  }
+
+}
+
+@media (max-width: 767px) {
+  .footer_container {
+    margin-top: 2rem;
+    padding: 0 1rem 5rem 1rem;
+  }
+
+  .footer_container h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.8rem;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact_info {
+    display: flex;
+    flex-direction: row;
+    text-transform: uppercase;
+    gap: 1rem;
+    font-weight: 200;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .socials svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .credits {
+    text-transform: lowercase;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    font-weight: 200;
+  }
+
+  .credits a {
+    font-weight: 200;
+    text-decoration: underline;
+  }
+
+  .footer_bigtext_container {
+    display: none;
+  }
+
 }
