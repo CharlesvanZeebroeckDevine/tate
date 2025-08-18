@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/project-details.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <title>Project Detail - Tate Edits</title>
 </head>
@@ -31,21 +32,57 @@
         </header>
 
         <div class="project-detail-container">
-            <div class="project-hero">
-                <div class="back-button">
-                    <a href="./projects.html" class="back-link">
-                        ← Back
-                    </a>
-                </div>
+            <div class="back-button">
+                <a href="./projects.html" class="back-link">
+                    ← Back
+                </a>
+            </div>
+            <div class="project-content">
+                <div class="text">
 
-                <div class="project-video-container">
-                    <video id="projectVideo" playsinline controls>
-                        <source src="" type="video/mp4">
-                        Your browser doesn't support HTML5 video.
-                    </video>
-                </div>
+                    <div class="project-header">
+                        <p>Projet</p>
+                        <h1 id="projectTitle">Projet</h1>
+                    </div>
 
-                <!-- Video Navigation -->
+                    <div class="project-description">
+                        <p>Description</p>
+                        <p id="projectDescription">Project description will be loaded here...</p>
+                    </div>
+
+                    <div class="project-meta">
+                        <div class="project-category-section">
+                            <p>Année</p>
+                            <span id="projectYear" class="project-year">2024</span>
+                        </div>
+                        <div class="project-category-section">
+                            <p>Client</p>
+                            <span id="projectClient" class="project-client">Client Name</span>
+                        </div>
+                        <div class="project-category-section">
+                            <p>Catégorie</p>
+                            <div id="projectCategory" class="project-category">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-skills-section">
+                            <p>Services</p>
+                            <div id="projectSkills" class="skills-list">
+                                <!-- Skills will be loaded here -->
+                            </div>
+                        </div>
+
+                        <div class="project-collaborators-section">
+                            <p>Collaborateurs</p>
+                            <div id="projectCollaborators" class="collaborators-list">
+                                <!-- Collaborators will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="video-navigation">
                     <button id="prevVideo" class="nav-btn prev-btn" disabled>
                         <span>← Previous</span>
@@ -57,42 +94,25 @@
                         <span>Next →</span>
                     </button>
                 </div>
+
+                <div class="project-video-container">
+                    <video id="projectVideo" playsinline>
+                        <source src="" type="video/mp4">
+                        Your browser doesn't support HTML5 video.
+                    </video>
+                </div>
+
+                <!-- Custom Video Controls Container -->
+                <div class="custom-plyr-controls"></div>
             </div>
-
-            <div class="project-content">
-                <div class="project-header">
-                    <h1 id="projectTitle">Project Title</h1>
-                    <div class="project-meta">
-                        <span id="projectYear" class="project-year">2024</span>
-                        <span id="projectClient" class="project-client">Client Name</span>
-                    </div>
-                </div>
-
-                <div class="project-description">
-                    <p id="projectDescription">Project description will be loaded here...</p>
-                </div>
-
-                <div class="project-details-grid">
-                    <div class="project-skills-section">
-                        <h3>Skills Used</h3>
-                        <div id="projectSkills" class="skills-list">
-                            <!-- Skills will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="project-collaborators-section">
-                        <h3>Collaborators</h3>
-                        <div id="projectCollaborators" class="collaborators-list">
-                            <!-- Collaborators will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
         </div>
     </main>
 
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script type="module" src="/project-detail.js"></script>
+    <script type="module" src="./src/main.js"></script>
+
 </body>
 
 </html>

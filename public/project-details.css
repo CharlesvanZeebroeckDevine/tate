@@ -1,0 +1,164 @@
+#projectTitle {
+    font-size: 3rem;
+    text-transform: uppercase;
+    line-height: 90%;
+}
+
+p {
+    font-size: 1rem;
+    color: #576262;
+    font-weight: 300;
+}
+
+span {
+    font-size: 1rem;
+    color: #1B1D1D;
+    font-weight: 300;
+}
+
+
+#projectDescription {
+    color: #1B1D1D;
+    max-width: 45ch;
+}
+
+.text {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.project-meta {
+    display: flex;
+    gap: 10rem;
+}
+
+.project-details {
+    display: flex;
+    gap: 10rem;
+}
+
+.skills-list,
+.collaborators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.back-button {
+    margin-bottom: 3rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 300;
+    color: #1B1D1D;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #666;
+}
+
+.project-video-container {
+    width: 50%;
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 5rem;
+}
+
+.project-video-container video {
+    width: 50%;
+    height: auto;
+}
+
+/* Remove controls from video container */
+.project-video-container .plyr__controls {
+    display: none !important;
+}
+
+/* Style controls in custom container */
+.custom-plyr-controls .plyr__controls {
+    position: relative !important;
+    padding: 0 !important;
+    background: none !important;
+    color: #1B1D1D !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    margin-top: 1rem !important;
+}
+
+/* Custom Plyr controls styling */
+.custom-plyr-controls {
+    width: 50%;
+    padding: 1rem 0;
+    background: transparent;
+}
+
+/* Override Plyr's default control positioning */
+.plyr--video .plyr__controls {
+    position: relative !important;
+    padding: 0 !important;
+    background: none !important;
+    color: #1B1D1D !important;
+}
+
+/* Style the progress bar */
+.plyr--full-ui input[type=range] {
+    color: #1B1D1D !important;
+}
+
+/* Style the play button and other controls */
+.plyr__control {
+    color: #1B1D1D !important;
+}
+
+.plyr__control--overlaid {
+    display: none !important;
+}
+
+.plyr__progress__buffer {
+    display: none !important;
+}
+
+/* Remove default video hover controls */
+.plyr--video:hover .plyr__controls {
+    opacity: 1 !important;
+}
+
+/* Video Navigation Styles */
+.video-navigation {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.nav-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #1B1D1D;
+    background: transparent;
+    color: #1B1D1D;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #1B1D1D;
+    color: #F2F2F2;
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    border-color: #ccc;
+    color: #ccc;
+}

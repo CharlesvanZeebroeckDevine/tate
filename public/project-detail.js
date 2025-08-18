@@ -55,6 +55,8 @@ function updateProjectDetail(project, videoIndex = 0) {
     document.getElementById('projectYear').textContent = project.year;
     document.getElementById('projectClient').textContent = project.client;
     document.getElementById('projectDescription').textContent = project.description;
+    document.getElementById('projectCategory').textContent = project.category;
+
 
     // Update skills
     const skillsContainer = document.getElementById('projectSkills');
@@ -131,8 +133,21 @@ function initializeVideoPlayer() {
 
         currentPlayer = new Plyr(video, {
             controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-            autoplay: false,
-            muted: true
+            autoplay: true,
+            muted: true,
+            tooltips: { controls: true, seek: true },
+            settings: [] // Remove settings menu
+        });
+
+        // Move controls to custom container after player is ready
+        currentPlayer.on('ready', (event) => {
+            const instance = event.detail.plyr;
+            const controls = instance.elements.controls;
+
+            // Only move controls if they exist and haven't been moved yet
+            if (controls && controls.parentElement !== document.querySelector('.custom-plyr-controls')) {
+                document.querySelector('.custom-plyr-controls').appendChild(controls);
+            }
         });
     }
 }
