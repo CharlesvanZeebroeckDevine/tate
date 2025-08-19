@@ -37,7 +37,7 @@ span {
 
 .project-detail {
     display: flex;
-    gap: 15rem;
+    gap: 13.5rem;
 }
 
 .skills-list,
@@ -85,6 +85,10 @@ span {
 
 .format-v .parent-container {
     align-items: center;
+}
+
+.project-skills-section {
+    width: 10rem;
 }
 
 .parent-container {
@@ -182,4 +186,104 @@ span {
 .nav-btn:disabled {
     opacity: 0.3;
     color: #ccc;
+}
+
+
+
+@media (max-width: 767px) {
+
+    .project-detail-container {
+        padding: 0 1rem;
+    }
+
+    /* Mobile layout - reorganize the project content using CSS Grid */
+    .project-content,
+    .format-v .project-content {
+        display: grid;
+        grid-template-areas:
+            "header"
+            "meta"
+            "video"
+            "description"
+            "detail";
+        gap: 2rem;
+    }
+
+    /* Assign grid areas to elements */
+    .project-header,
+    .format-v .project-header {
+        grid-area: header;
+    }
+
+    .project-meta,
+    .format-v .project-meta {
+        grid-area: meta;
+        flex-direction: row;
+        gap: 3rem;
+    }
+
+    .parent-container,
+    .format-v .parent-container {
+        grid-area: video;
+        width: 100%;
+        align-items: center;
+        margin: 0;
+    }
+
+    .project-description,
+    .format-v .project-description {
+        grid-area: description;
+    }
+
+    .project-detail,
+    .format-v .project-detail {
+        grid-area: detail;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* Reset text container grid for mobile */
+    .text,
+    .format-v .text {
+        display: contents;
+    }
+
+    /* Adjust video container for mobile */
+    .project-video-container,
+    .format-v .project-video-container {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* Adjust custom controls for mobile */
+    .custom-plyr-controls,
+    .format-v .custom-plyr-controls {
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    /* Show video navigation on mobile */
+    .video-navigation,
+    .format-v .video-navigation {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+
+    /* Adjust skills section width for mobile */
+    .project-skills-section,
+    .format-v .project-skills-section {
+        width: 100%;
+    }
+
+    /* Make project title smaller on mobile */
+    #projectTitle,
+    .format-v #projectTitle {
+        font-size: 2.5rem;
+    }
+
+    /* Adjust back button for mobile */
+    .back-button,
+    .format-v .back-button {
+        margin-bottom: 2rem;
+    }
 }
