@@ -28,7 +28,7 @@ function createProjectCard(project) {
     return `
         <div class="project-card" data-skills="${project.skills.join(',')}" data-project-id="${project.id}">
             <div class="project-thumbnail">
-                <img src="${project.thumbnail}" alt="${project.title}">
+                <img src="${project.thumbnail}" alt="${project.title}" loading="lazy" decoding="async">
                 ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
                 <span class="category-tag">${project.category}</span>
             </div>

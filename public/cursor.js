@@ -28,17 +28,16 @@ class CustomCursor {
     }
 
     initClickableHover() {
-        // Handle hover on all clickable elements
-        const clickableElements = document.querySelectorAll('a, button, [role="button"], input[type="submit"], input[type="button"], .filter-btn, .nav-btn, .project-card, .service_category');
-
-        clickableElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
+        const selector = 'a, button, [role="button"], input[type="submit"], input[type="button"], .filter-btn, .nav-btn, .project-card, .service_category';
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest(selector)) {
                 this.cursorDot.classList.add('hovering');
-            });
-
-            element.addEventListener('mouseleave', () => {
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest(selector)) {
                 this.cursorDot.classList.remove('hovering');
-            });
+            }
         });
     }
 

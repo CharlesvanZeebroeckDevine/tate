@@ -21,6 +21,36 @@ let currentProject = null;
 let currentVideoIndex = 0;
 let currentPlayer = null;
 
+// Ensure current video fully unloads to stop network activity
+function teardownCurrentVideo() {
+    try {
+        if (currentPlayer) {
+            try { currentPlayer.pause(); } catch (_) { }
+            try { currentPlayer.destroy(); } catch (_) { }
+            currentPlayer = null;
+        }
+
+        const existingVideo = document.getElementById('projectVideo');
+        if (existingVideo) {
+            try { existingVideo.pause(); } catch (_) { }
+            // Remove sources to abort any ongoing download
+            existingVideo.removeAttribute('src');
+            const sources = existingVideo.querySelectorAll('source');
+            sources.forEach(src => src.remove());
+            // Calling load() after removing src ensures network is aborted
+            try { existingVideo.load(); } catch (_) { }
+        }
+
+        // Clear any previously moved controls
+        const customControlsContainer = document.querySelector('.custom-plyr-controls');
+        if (customControlsContainer) {
+            customControlsContainer.innerHTML = '';
+        }
+    } catch (_) {
+        // no-op
+    }
+}
+
 // Update project detail with current video
 function updateProjectDetail(project, videoIndex = 0) {
     if (!project || !project.videos || project.videos.length === 0) {
@@ -41,10 +71,13 @@ function updateProjectDetail(project, videoIndex = 0) {
     const projectContainer = document.querySelector('.project-detail-container');
     projectContainer.className = `project-detail-container format-${project.format}`;
 
+    // Teardown any previous video/player to avoid continued downloads
+    teardownCurrentVideo();
+
     // Create video player
     const videoContainer = document.querySelector('.project-video-container');
     videoContainer.innerHTML = `
-        <video id="projectVideo" playsinline controls>
+        <video id="projectVideo" playsinline controls preload="metadata">
             <source src="${video.videoUrl}" type="video/mp4">
             Your browser doesn't support HTML5 video.
         </video>
@@ -128,13 +161,27 @@ function initializeVideoPlayer() {
     if (video && video.tagName === 'VIDEO') {
         // Destroy existing player if it exists
         if (currentPlayer) {
-            currentPlayer.destroy();
+            try { currentPlayer.pause(); } catch (_) { }
+            try { currentPlayer.destroy(); } catch (_) { }
         }
 
         // Clear the custom controls container before creating new player
         const customControlsContainer = document.querySelector('.custom-plyr-controls');
         if (customControlsContainer) {
             customControlsContainer.innerHTML = '';
+        }
+
+        if (!window.Plyr) {
+            // Wait for Plyr to be available if script hasn't loaded yet
+            const waitForPlyr = () => {
+                if (window.Plyr) {
+                    initializeVideoPlayer();
+                } else {
+                    setTimeout(waitForPlyr, 30);
+                }
+            };
+            waitForPlyr();
+            return;
         }
 
         currentPlayer = new Plyr(video, {
