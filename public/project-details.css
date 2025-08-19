@@ -1,5 +1,5 @@
 #projectTitle {
-    font-size: 3rem;
+    font-size: 4rem;
     text-transform: uppercase;
     line-height: 90%;
 }
@@ -19,7 +19,7 @@ span {
 
 #projectDescription {
     color: #1B1D1D;
-    max-width: 45ch;
+    max-width: 60ch;
 }
 
 .text {
@@ -30,13 +30,14 @@ span {
 }
 
 .project-meta {
+    grid-area: 2 / 1 / 2 / 2;
     display: flex;
-    gap: 10rem;
+    gap: 7rem;
 }
 
-.project-details {
+.project-detail {
     display: flex;
-    gap: 10rem;
+    gap: 15rem;
 }
 
 .skills-list,
@@ -63,16 +64,46 @@ span {
     color: #666;
 }
 
+.format-v .text {
+    display: flex;
+    flex-direction: column;
+}
+
+.format-v .project-content {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.format-v .project-video-container {
+    width: 40%;
+}
+
+.format-v .custom-plyr-controls {
+    width: 60%;
+}
+
+.format-v .parent-container {
+    align-items: center;
+}
+
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
 .project-video-container {
     width: 50%;
-    display: flex;
     border-radius: 12px;
     overflow: hidden;
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 
 .project-video-container video {
-    width: 50%;
+    width: 100%;
+    position: relative;
+    right: 0;
     height: auto;
 }
 
@@ -89,7 +120,7 @@ span {
     color: #1B1D1D !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    justify-content: flex-end !important;
     text-align: left !important;
     margin-top: 1rem !important;
 }
@@ -137,28 +168,18 @@ span {
     display: none;
     align-items: center;
     justify-content: center;
-    margin-top: 2rem;
+    gap: 1rem;
 }
 
-.nav-btn {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid #1B1D1D;
-    background: transparent;
+.nav-btn span {
     color: #1B1D1D;
     font-family: "DM Sans", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     transition: all 0.3s ease;
-    border-radius: 4px;
-}
-
-.nav-btn:hover:not(:disabled) {
-    background: #1B1D1D;
-    color: #F2F2F2;
 }
 
 .nav-btn:disabled {
     opacity: 0.3;
-    border-color: #ccc;
     color: #ccc;
 }

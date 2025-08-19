@@ -2,6 +2,14 @@
   margin: 0;
 }
 
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
@@ -17,7 +25,8 @@ body {
 .cursor-dot {
   width: 12px;
   height: 12px;
-  background-color: #1B1D1D;
+  background-color: #F1F1F1;
+  mix-blend-mode: difference;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -30,6 +39,9 @@ body {
 .cursor-dot.expanded {
   transform: translate(-50%, -50%) scale(8);
   display: flex;
+  background-color: #F1F1F1;
+  mix-blend-mode: difference;
+  opacity: 100%;
   align-items: center;
   justify-content: center;
 }
@@ -38,6 +50,7 @@ body {
   display: none;
   width: 12px;
   height: 12px;
+  mix-blend-mode: difference;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -45,7 +58,7 @@ body {
 }
 
 .cursor-dot.expanded .sound-icon {
-  color: #F2F2F2;
+  color: #1B1D1D;
   display: flex;
   align-items: center;
   justify-content: center;

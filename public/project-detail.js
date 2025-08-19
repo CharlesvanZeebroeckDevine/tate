@@ -131,6 +131,12 @@ function initializeVideoPlayer() {
             currentPlayer.destroy();
         }
 
+        // Clear the custom controls container before creating new player
+        const customControlsContainer = document.querySelector('.custom-plyr-controls');
+        if (customControlsContainer) {
+            customControlsContainer.innerHTML = '';
+        }
+
         currentPlayer = new Plyr(video, {
             controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
             autoplay: true,
@@ -145,8 +151,8 @@ function initializeVideoPlayer() {
             const controls = instance.elements.controls;
 
             // Only move controls if they exist and haven't been moved yet
-            if (controls && controls.parentElement !== document.querySelector('.custom-plyr-controls')) {
-                document.querySelector('.custom-plyr-controls').appendChild(controls);
+            if (controls && controls.parentElement !== customControlsContainer) {
+                customControlsContainer.appendChild(controls);
             }
         });
     }

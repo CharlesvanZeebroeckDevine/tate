@@ -1,7 +1,7 @@
 {
     "projects": [
         {
-            "id": 8,
+            "id": 1,
             "title": "THE CHOSEN ONE",
             "year": 2025,
             "client": "Kcorp",
@@ -150,7 +150,7 @@
             ]
         },
         {
-            "id": 1,
+            "id": 8,
             "title": "Steel",
             "year": 2025,
             "client": "Steel",
