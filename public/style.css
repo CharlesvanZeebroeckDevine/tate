@@ -22,50 +22,6 @@ body {
   cursor: none;
 }
 
-/* Custom cursor styles */
-.cursor-dot {
-  width: 12px;
-  height: 12px;
-  background-color: #F1F1F1;
-  mix-blend-mode: difference;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.2s ease;
-  transform: translate(-50%, -50%);
-  /* Center the dot on the cursor */
-}
-
-.cursor-dot.expanded {
-  transform: translate(-50%, -50%) scale(8);
-  display: flex;
-  background-color: #F1F1F1;
-  mix-blend-mode: difference;
-  opacity: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.cursor-dot .sound-icon {
-  display: none;
-  width: 12px;
-  height: 12px;
-  mix-blend-mode: difference;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-dot.expanded .sound-icon {
-  color: #1B1D1D;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 header {
   padding: 2rem 8rem 3rem 8rem;
   display: flex;
@@ -101,8 +57,51 @@ input[type="button"],
   cursor: none;
 }
 
-.cursor-dot a:hover {
-  transform: scale(1.2);
+
+/* Custom cursor styles */
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #F1F1F1;
+  mix-blend-mode: difference;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease-out;
+}
+
+.cursor-dot.expanded {
+  transform: translate(-50%, -50%) scale(8);
+  display: flex;
+  background-color: #F1F1F1;
+  mix-blend-mode: difference;
+  opacity: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-dot.hovering {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.cursor-dot .sound-icon {
+  display: none;
+  width: 12px;
+  height: 12px;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-dot.expanded .sound-icon {
+  color: #1B1D1D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
@@ -211,6 +210,7 @@ input[type="button"],
 .filter-btn {
   padding: 0.75rem 1.5rem;
   border: 1px solid #1B1D1D;
+  border-radius: 2rem;
   background: transparent;
   color: #1B1D1D;
   font-family: "DM Sans", sans-serif;
@@ -279,6 +279,27 @@ input[type="button"],
 .project-details {
   display: flex;
   justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.project-client {
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 0.3rem 0;
+}
+
+.project-year {
+  font-size: 0.8rem;
+  font-weight: 200;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.project-category {
+  font-size: 1rem;
+  font-weight: 200;
+  margin: 0;
 }
 
 .project-detail-container {

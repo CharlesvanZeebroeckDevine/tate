@@ -1,8 +1,8 @@
 const SKILL_FILTERS = [
-    { key: 'Sound-Design', label: 'Sound-Design' },
     { key: 'Prise de vue', label: 'Prise de vue' },
     { key: 'Montage', label: 'Montage' },
-    { key: 'Motion', label: 'Motion' }
+    { key: 'Motion', label: 'Motion' },
+    { key: 'Sound-Design', label: 'Sound-Design' }
 ];
 
 // Get filter from URL parameters
