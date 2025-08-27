@@ -85,7 +85,7 @@ span {
 }
 
 .format-v .project-video-container {
-    width: 40%;
+    width: 50%;
 }
 
 .format-v .custom-plyr-controls {
@@ -94,6 +94,7 @@ span {
 
 .format-v .parent-container {
     align-items: center;
+    margin-left: 10rem;
 }
 
 .project-skills-section {

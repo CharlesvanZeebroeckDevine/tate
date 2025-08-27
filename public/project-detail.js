@@ -77,7 +77,7 @@ function updateProjectDetail(project, videoIndex = 0) {
     // Create video player
     const videoContainer = document.querySelector('.project-video-container');
     videoContainer.innerHTML = `
-        <video id="projectVideo" playsinline controls preload="metadata">
+        <video id="projectVideo" playsinline controls preload="metadata" muted>
             <source src="${video.videoUrl}" type="video/mp4">
             Your browser doesn't support HTML5 video.
         </video>
@@ -201,6 +201,22 @@ function initializeVideoPlayer() {
             if (controls && controls.parentElement !== customControlsContainer) {
                 customControlsContainer.appendChild(controls);
             }
+
+            // Ensure video is muted and try to autoplay (Safari compatibility)
+            const videoElement = instance.media;
+            if (videoElement) {
+                videoElement.muted = true;
+                // Try to play after a short delay to ensure everything is ready
+                setTimeout(() => {
+                    const playPromise = videoElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.log('Autoplay prevented:', error);
+                            // Show a play button or indicator that user needs to interact
+                        });
+                    }
+                }, 100);
+            }
         });
     }
 }
@@ -244,6 +260,26 @@ async function initProjectDetail() {
 
     // Initialize video player
     initializeVideoPlayer();
+
+    // Add user interaction listener for Safari autoplay
+    let hasUserInteracted = false;
+    const handleUserInteraction = () => {
+        if (!hasUserInteracted && currentPlayer) {
+            hasUserInteracted = true;
+            const videoElement = currentPlayer.media;
+            if (videoElement && videoElement.paused) {
+                videoElement.muted = true;
+                videoElement.play().catch(error => {
+                    console.log('Play failed after user interaction:', error);
+                });
+            }
+        }
+    };
+
+    // Listen for various user interactions that Safari allows
+    document.addEventListener('click', handleUserInteraction, { once: true });
+    document.addEventListener('touchstart', handleUserInteraction, { once: true });
+    document.addEventListener('keydown', handleUserInteraction, { once: true });
 }
 
 initProjectDetail();
