@@ -64,6 +64,10 @@ span {
     color: #666;
 }
 
+.format-h .project-video-container {
+    margin-top: 3rem;
+}
+
 .format-v .text {
     display: flex;
     flex-direction: column;

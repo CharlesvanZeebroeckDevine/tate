@@ -573,3 +573,36 @@ input[type="button"],
   }
 
 }
+
+@media (min-width: 1600px) {
+  header {
+    padding: 2rem 12rem 3rem 12rem;
+  }
+
+  .services {
+    padding: 12rem;
+  }
+
+  .project-detail-container {
+    margin: 0 auto;
+    padding: 0rem 12rem;
+  }
+
+  .footer_container {
+    margin-top: 2rem;
+    padding: 0 12rem 5rem 12rem;
+  }
+
+  .projects_container {
+    padding: 0 12rem 4rem 12rem;
+  }
+
+  .projects_header {
+    padding: 4rem 12rem 2rem 12rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+}

@@ -284,6 +284,120 @@
                     "videoUrl": "./videos/JaponPart2.mp4"
                 }
             ]
+        },
+        {
+            "id": 13,
+            "title": "Juyru",
+            "year": 2025,
+            "client": "Juyru",
+            "description": "Juyru",
+            "thumbnail": "./thumbnails/Juyru.jpg",
+            "skills": [
+                "Prise de vue",
+                "Montage"
+            ],
+            "collaborators": [],
+            "category": "Perso",
+            "format": "h",
+            "videos": [
+                {
+                    "id": "juyru-1",
+                    "title": "Juyru",
+                    "videoUrl": "./videos/Juyru.mp4"
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "title": "Peet",
+            "year": 2025,
+            "client": "Peet",
+            "description": "Peet",
+            "thumbnail": "./thumbnails/Peet.jpg",
+            "skills": [
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
+            ],
+            "collaborators": [],
+            "category": "Music",
+            "format": "h",
+            "videos": [
+                {
+                    "id": "peet-1",
+                    "title": "Peet",
+                    "videoUrl": "./videos/Peet.mp4"
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "title": "?",
+            "year": 2025,
+            "client": "?",
+            "description": "?",
+            "thumbnail": "./thumbnails/Perso.jpg",
+            "skills": [
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
+            ],
+            "collaborators": [],
+            "category": "Perso",
+            "format": "h",
+            "videos": [
+                {
+                    "id": "perso-1",
+                    "title": "?",
+                    "videoUrl": "./videos/Perso.mp4"
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "title": "Rimey 24HC",
+            "year": 2025,
+            "client": "Rimey",
+            "description": "Rimey 24HC",
+            "thumbnail": "./thumbnails/Rimey.jpg",
+            "skills": [
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
+            ],
+            "collaborators": [],
+            "category": "E-sport",
+            "format": "h",
+            "videos": [
+                {
+                    "id": "rimey-1",
+                    "title": "Rimey 24HC",
+                    "videoUrl": "./videos/Rimey.mp4"
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "title": "EJ Unlimited",
+            "year": 2025,
+            "client": "EJ Unlimited",
+            "description": "EJ unlimited",
+            "thumbnail": "./thumbnails/EJ.jpg",
+            "skills": [
+                "Sound-Design",
+                "Montage",
+                "Prise de vue"
+            ],
+            "collaborators": [],
+            "category": "Perso",
+            "format": "h",
+            "videos": [
+                {
+                    "id": "ej-1",
+                    "title": "EJ Unlimited",
+                    "videoUrl": "./videos/EjUnlimited.mp4"
+                }
+            ]
         }
     ]
 }
