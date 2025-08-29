@@ -130,19 +130,8 @@
   </main>
 
   <script type="module" src="/cursor.js"></script>
-  <script type="module">
-    const video = document.getElementById('player');
-
-    if (video && window.cursor) {
-      window.cursor.initShowreel(video);
-    }
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(() => { });
-    }
-  </script>
-
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/main.js"></script>
+  <script type="module" src="/src/gsap.js"></script>
 </body>
 
 </html>
