@@ -1,8 +1,1 @@
-# Handle project detail pages
-/project-detail.html /project-detail.html 200
-
-# Handle projects page
-/projects.html /projects.html 200
-
-# Fallback for SPA routing (if needed)
-/* /index.html 200 
+/* /index.html 200

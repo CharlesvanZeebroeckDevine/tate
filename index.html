@@ -11,63 +11,30 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
     rel="stylesheet">
   <link href="./videos/showreel.mp4" type="video/mp4">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/project-details.css">
   <title>Tate Edits</title>
 </head>
 
-
 <body>
+
   <div class="grain"></div>
+
   <main>
     <header>
-      <a class="logo" href="./index.html">
+      <a class="logo" href="/">
         TATE EDITS
       </a>
 
       <nav>
         <ul>
-          <li><a href="./projects.html">Projets</a></li>
+          <li><a href="/projects">Projets</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <div class="showreel">
-      <video id="player" playsinline autoplay muted loop>
-        <source src="./videos/showreel.mp4" type="video/mp4">
-        Your browser doesn't support HTML5 video.
-      </video>
-    </div>
-
-    <div class="services">
-      <h2 class="services_title">Mes services</h2>
-      <hr class="line">
-      <div class="services_container">
-        <a href="./projects.html?filter=Prise%20de%20vue" class="service_category">
-          <h2><span class="dot">.</span>Prise de vue</h2>
-          <p>J'assemble les meilleures séquences pour raconter une histoire fluide et rythmée, en mettant chaque moment
-            clé en valeur.</p>
-        </a>
-        <a href="./projects.html?filter=Motion" class="service_category">
-          <h2><span class="dot">.</span>Motion Design</h2>
-          <p>J'apporte du dynamisme à tes vidéos grâce à des animations graphiques et des effets visuels, pour un rendu
-            moderne et impactant.</p>
-        </a>
-        <a href="./projects.html?filter=Sound-Design" class="service_category">
-          <h2><span class="dot">.</span>Sound Design et Mixage</h2>
-          <p>Je crée et intègre des sons sur-mesure pour renforcer l'ambiance et l'émotion, afin que chaque vidéo soit
-            vraiment immersive.</p>
-        </a>
-        <a href="./projects.html?filter=Montage" class="service_category">
-          <h2><span class="dot">.</span>Montage</h2>
-          <p>J'assemble les meilleures séquences pour raconter une histoire fluide et rythmée, en mettant chaque moment
-            clé en valeur.</p>
-        </a>
-      </div>
-      <div class="explore_btn_container">
-        <a href="./projects.html" class="explore_btn">Mes projets</a>
-      </div>
-    </div>
+    <div id="view"></div>
 
     <footer id="contact">
       <div class="footer_container">
@@ -119,7 +86,8 @@
                 stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </div>
-          <p class="credits">Website by <a target="_blank" href="https://www.instagram.com/charles.vanz/">Charles van
+          <p class="credits">Website by <a target="_blank" href="https://www.instagram.com/charles.vanz/">Charles
+              van
               Zeebroeck</a></p>
         </div>
       </div>
@@ -129,9 +97,9 @@
     </footer>
   </main>
 
-  <script type="module" src="/cursor.js"></script>
-  <script type="module" src="/main.js"></script>
-  <script type="module" src="/src/gsap.js"></script>
+  <script type="module" src="/src/main.js"></script>
+
+  </div>
 </body>
 
 </html>

@@ -1,6 +1,8 @@
+import Plyr from 'plyr';
+import 'plyr/dist/plyr.css';
 // Get project ID from URL parameters
-function getProjectIdFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
+function getProjectIdFromSearch(search) {
+    const urlParams = new URLSearchParams(search || window.location.search);
     return urlParams.get('id');
 }
 
@@ -171,19 +173,6 @@ function initializeVideoPlayer() {
             customControlsContainer.innerHTML = '';
         }
 
-        if (!window.Plyr) {
-            // Wait for Plyr to be available if script hasn't loaded yet
-            const waitForPlyr = () => {
-                if (window.Plyr) {
-                    initializeVideoPlayer();
-                } else {
-                    setTimeout(waitForPlyr, 30);
-                }
-            };
-            waitForPlyr();
-            return;
-        }
-
         currentPlayer = new Plyr(video, {
             controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
             autoplay: true,
@@ -228,14 +217,14 @@ function handleProjectNotFound() {
         <div class="error-container">
             <h2>Project Not Found</h2>
             <p>The project you're looking for doesn't exist.</p>
-            <a href="./projects.html" class="back-link">← Back to Projects</a>
+            <a href="/projects" class="back-link">← Back to Projects</a>
         </div>
     `;
 }
 
 // Initialize project detail page
-async function initProjectDetail() {
-    const projectId = getProjectIdFromUrl();
+export async function init(_rootEl, { search } = {}) {
+    const projectId = getProjectIdFromSearch(search);
 
     if (!projectId) {
         handleProjectNotFound();
@@ -282,4 +271,6 @@ async function initProjectDetail() {
     document.addEventListener('keydown', handleUserInteraction, { once: true });
 }
 
-initProjectDetail();
+export async function destroy() {
+    try { teardownCurrentVideo(); } catch (_) { }
+}

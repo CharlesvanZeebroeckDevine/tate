@@ -78,8 +78,8 @@ function filterProjects(skill) {
 }
 
 // Initialize projects page
-async function initProjects() {
-    const projectsGrid = document.getElementById('projectsGrid');
+export async function init(rootEl, { search } = {}) {
+    const projectsGrid = rootEl.querySelector('#projectsGrid');
     const projects = await loadProjects();
 
     // Display all projects
@@ -87,7 +87,7 @@ async function initProjects() {
 
     // Render and add event listeners for filter buttons
     renderFilterButtons();
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterButtons = rootEl.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             const skill = e.target.dataset.skill;
@@ -96,21 +96,29 @@ async function initProjects() {
     });
 
     // Add click event listeners to project cards
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectCards = rootEl.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
             const projectId = card.dataset.projectId;
             if (projectId) {
-                window.location.href = `./project-detail.html?id=${projectId}`;
+                // SPA navigation to project detail while preserving query param
+                const href = `/project-detail?id=${projectId}`;
+                if (window.__spaNavigate) {
+                    window.__spaNavigate(href);
+                } else {
+                    window.location.href = href;
+                }
             }
         });
     });
 
     // Check for filter parameter in URL and apply it
-    const urlFilter = getFilterFromUrl();
+    const urlFilter = new URLSearchParams(search || window.location.search).get('filter');
     if (urlFilter) {
         filterProjects(urlFilter);
     }
 }
 
-document.addEventListener('DOMContentLoaded', initProjects); 
+export async function destroy() {
+    // Events are attached to elements that will be removed on unmount; no global cleanup required
+}
