@@ -1,4 +1,7 @@
 let videoRef = null;
+let introTl = null;
+let scrollTriggers = [];
+import { buildIntroTimeline, createScrollTriggers } from './home.gsap.js';
 
 export async function init(rootEl) {
     const video = rootEl.querySelector('#player');
@@ -38,6 +41,10 @@ export async function init(rootEl) {
     if (window.cursor) {
         window.cursor.initShowreel(video);
     }
+
+    // Prepare GSAP intro and scroll triggers (do not play yet)
+    introTl = buildIntroTimeline(rootEl);
+    scrollTriggers = createScrollTriggers(rootEl);
 }
 
 export async function destroy() {

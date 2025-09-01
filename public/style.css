@@ -231,7 +231,25 @@ input[type="button"],
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: uppercase;
+  z-index: 9999;
 }
+
+.logo svg {
+  width: 15px;
+  height: 15px;
+  transform: translateY(-8px);
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+  z-index: 99;
+}
+
 
 /* Showreel video styling */
 .showreel {
