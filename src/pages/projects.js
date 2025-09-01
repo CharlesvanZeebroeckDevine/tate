@@ -1,3 +1,10 @@
+import { buildProjectsIntroTimeline, animateProjectCards, createProjectsScrollTriggers } from './projects.gsap.js';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Animation variables
+let introTl = null;
+let scrollTriggers = [];
+
 const SKILL_FILTERS = [
     { key: 'Prise de vue', label: 'Prise de vue' },
     { key: 'Montage', label: 'Montage' },
@@ -82,11 +89,21 @@ export async function init(rootEl, { search } = {}) {
     const projectsGrid = rootEl.querySelector('#projectsGrid');
     const projects = await loadProjects();
 
+    // Render and add event listeners for filter buttons
+    renderFilterButtons();
+
+    // Build and start intro timeline
+    introTl = buildProjectsIntroTimeline();
+
     // Display all projects
     projectsGrid.innerHTML = projects.map(project => createProjectCard(project)).join('');
 
-    // Render and add event listeners for filter buttons
-    renderFilterButtons();
+    // Animate project cards after they're loaded
+    animateProjectCards();
+
+    // Create scroll triggers for project cards
+    scrollTriggers = createProjectsScrollTriggers();
+
     const filterButtons = rootEl.querySelectorAll('.filter-btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -120,5 +137,18 @@ export async function init(rootEl, { search } = {}) {
 }
 
 export async function destroy() {
+    // Clean up GSAP animations
+    if (introTl) {
+        introTl.kill();
+        introTl = null;
+    }
+
+    // Kill all ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => {
+        trigger.kill();
+    });
+
+    scrollTriggers = [];
+
     // Events are attached to elements that will be removed on unmount; no global cleanup required
 }

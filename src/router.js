@@ -54,8 +54,22 @@ function scrollToHash(hash) {
     const id = hash.startsWith('#') ? hash.slice(1) : hash;
     const el = document.getElementById(id);
     if (el) {
-        try { el.scrollIntoView(); } catch (_) { }
+        try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (_) { }
     }
+}
+
+function navigateSamePageHash(hash, { replace = false } = {}) {
+    const h = hash.startsWith('#') ? hash : `#${hash}`;
+    const url = new URL(window.location.href);
+    url.hash = h;
+    try {
+        if (replace) {
+            window.history.replaceState({}, '', url.pathname + url.search + url.hash);
+        } else {
+            window.history.pushState({}, '', url.pathname + url.search + url.hash);
+        }
+    } catch (_) { window.location.hash = h; }
+    scrollToHash(h);
 }
 
 async function mount(route, ctx, replace = false) {
@@ -119,7 +133,18 @@ function onLinkClick(e) {
     if (!anchor) return;
     if (anchor.target && anchor.target.toLowerCase() === '_blank') return;
     const href = anchor.getAttribute('href');
-    if (!href || href.startsWith('#')) return; // allow hash links
+    if (!href) return;
+    // Handle same-page hash links with smooth scroll and without SPA navigation
+    if (href.startsWith('#')) {
+        e.preventDefault();
+        navigateSamePageHash(href);
+        return;
+    }
+    if (href.startsWith('/#')) {
+        e.preventDefault();
+        navigateSamePageHash(href.slice(1));
+        return;
+    }
 
     if (!sameOrigin(href)) return;
     const url = new URL(href, window.location.origin);
