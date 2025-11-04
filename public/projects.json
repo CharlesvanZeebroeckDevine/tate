@@ -17,11 +17,16 @@
             ],
             "category": "E-sport",
             "format": "h",
+            "resolution": [
+                "1920",
+                "810"
+            ],
             "videos": [
                 {
                     "id": "kcorp-1",
                     "title": "THE CHOSEN ONE",
-                    "videoUrl": "./videos/TheChosenOne.mp4"
+                    "videoUrl": "./videos/TheChosenOne.mp4",
+                    "previewUrl": "./videos/previews/TheChosenOne.mp4"
                 }
             ]
         },
@@ -43,11 +48,16 @@
             ],
             "category": "Music",
             "format": "v",
+            "resolution": [
+                "607",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "kaaris-1",
                     "title": "Kaaris - BDX",
-                    "videoUrl": "./videos/KaarisBdx.mp4"
+                    "videoUrl": "./videos/KaarisBdx.mp4",
+                    "previewUrl": "./videos/previews/KaarisBdx.mp4"
                 },
                 {
                     "id": "kaaris-2",
@@ -93,11 +103,16 @@
             ],
             "category": "Music",
             "format": "v",
+            "resolution": [
+                "607",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "djadja-1",
                     "title": "Djadja & Dinaz - Foot Korner",
-                    "videoUrl": "./videos/DjadjaDinaz.mp4"
+                    "videoUrl": "./videos/DjadjaDinaz.mp4",
+                    "previewUrl": "./videos/previews/DjadjaDinaz.mp4"
                 }
             ]
         },
@@ -117,11 +132,16 @@
             ],
             "category": "Perso",
             "format": "v",
+            "resolution": [
+                "607",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "gin-kao-1",
                     "title": "Gin Kao",
-                    "videoUrl": "./videos/GinKao.mp4"
+                    "videoUrl": "./videos/GinKao.mp4",
+                    "previewUrl": "./videos/previews/GinKao.mp4"
                 }
             ]
         },
@@ -141,11 +161,16 @@
             ],
             "category": "E-sport",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "zoxii-1",
                     "title": "Zoxii",
-                    "videoUrl": "./videos/zoxii.mp4"
+                    "videoUrl": "./videos/zoxii.mp4",
+                    "previewUrl": "./videos/previews/zoxii.mp4"
                 }
             ]
         },
@@ -165,11 +190,16 @@
             ],
             "category": "E-sport",
             "format": "h",
+            "resolution": [
+                "2703",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "steel-1",
                     "title": "Steel",
-                    "videoUrl": "./videos/Steel.mp4"
+                    "videoUrl": "./videos/Steel.mp4",
+                    "previewUrl": "./videos/previews/Steel.mp4"
                 }
             ]
         },
@@ -189,11 +219,16 @@
             ],
             "category": "E-sport",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "rain-gg-1",
                     "title": "Rain GG",
-                    "videoUrl": "./videos/RainGG.mp4"
+                    "videoUrl": "./videos/RainGG.mp4",
+                    "previewUrl": "./videos/previews/RainGG.mp4"
                 }
             ]
         },
@@ -216,11 +251,16 @@
             ],
             "category": "E-sport",
             "format": "v",
+            "resolution": [
+                "607",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "galions-1",
                     "title": "Galions",
-                    "videoUrl": "./videos/GalionsTiktok.mp4"
+                    "videoUrl": "./videos/GalionsTiktok.mp4",
+                    "previewUrl": "./videos/previews/GalionsTiktok.mp4"
                 },
                 {
                     "id": "galions-2",
@@ -249,11 +289,16 @@
             "collaborators": [],
             "category": "Perso",
             "format": "h",
+            "resolution": [
+                "2541",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "docu-1",
                     "title": "Documentary",
-                    "videoUrl": "./videos/Documentaire.mp4"
+                    "videoUrl": "./videos/Documentaire.mp4",
+                    "previewUrl": "./videos/previews/Documentaire.mp4"
                 }
             ]
         },
@@ -272,11 +317,16 @@
             "collaborators": [],
             "category": "Perso",
             "format": "h",
+            "resolution": [
+                "1880",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "japan-1",
                     "title": "Japan Travel - Part 1",
-                    "videoUrl": "./videos/JaponPart1.mp4"
+                    "videoUrl": "./videos/JaponPart1.mp4",
+                    "previewUrl": "./videos/previews/JaponPart1.mp4"
                 },
                 {
                     "id": "japan-2",
@@ -299,11 +349,16 @@
             "collaborators": [],
             "category": "Perso",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "juyru-1",
                     "title": "Juyru",
-                    "videoUrl": "./videos/Juyru.mp4"
+                    "videoUrl": "./videos/Juyru.mp4",
+                    "previewUrl": "./videos/previews/Juyru.mp4"
                 }
             ]
         },
@@ -322,11 +377,16 @@
             "collaborators": [],
             "category": "Music",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "peet-1",
                     "title": "Peet",
-                    "videoUrl": "./videos/Peet.mp4"
+                    "videoUrl": "./videos/Peet.mp4",
+                    "previewUrl": "./videos/previews/Peet.mp4"
                 }
             ]
         },
@@ -345,11 +405,16 @@
             "collaborators": [],
             "category": "Perso",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "perso-1",
                     "title": "?",
-                    "videoUrl": "./videos/Perso.mp4"
+                    "videoUrl": "./videos/Perso.mp4",
+                    "previewUrl": "./videos/previews/Perso.mp4"
                 }
             ]
         },
@@ -368,11 +433,16 @@
             "collaborators": [],
             "category": "E-sport",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "rimey-1",
                     "title": "Rimey 24HC",
-                    "videoUrl": "./videos/Rimey.mp4"
+                    "videoUrl": "./videos/Rimey.mp4",
+                    "previewUrl": "./videos/previews/Rimey.mp4"
                 }
             ]
         },
@@ -391,11 +461,16 @@
             "collaborators": [],
             "category": "Perso",
             "format": "h",
+            "resolution": [
+                "1920",
+                "1080"
+            ],
             "videos": [
                 {
                     "id": "ej-1",
                     "title": "EJ Unlimited",
-                    "videoUrl": "./videos/EjUnlimited.mp4"
+                    "videoUrl": "./videos/EjUnlimited.mp4",
+                    "previewUrl": "./videos/previews/EjUnlimited.mp4"
                 }
             ]
         }

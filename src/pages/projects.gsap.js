@@ -1,11 +1,18 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import { shouldReduceMotion } from '../gsap.js';
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
 export function buildProjectsIntroTimeline() {
+    // Skip animations if user prefers reduced motion or is on mobile
+    if (shouldReduceMotion()) {
+        gsap.set(".projects_header h2", { yPercent: 0, opacity: 1 });
+        return;
+    }
+
     // Create timeline for page entrance animations
     const tl = gsap.timeline();
 
@@ -28,6 +35,12 @@ export function buildProjectsIntroTimeline() {
 }
 
 export function animateProjectCards() {
+    // Skip animations if user prefers reduced motion or is on mobile
+    if (shouldReduceMotion()) {
+        gsap.set(".project-card", { y: 0, opacity: 1 });
+        return;
+    }
+
     // Animate project cards once they're loaded
     gsap.from(".project-card", {
         y: 50,

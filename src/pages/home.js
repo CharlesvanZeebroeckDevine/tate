@@ -1,7 +1,11 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { buildIntroTimeline, createScrollTriggers } from './home.gsap.js';
+
 let videoRef = null;
 let introTl = null;
 let scrollTriggers = [];
-import { buildIntroTimeline, createScrollTriggers } from './home.gsap.js';
+let isFirstLoad = true;
 
 export async function init(rootEl) {
     const video = rootEl.querySelector('#player');
@@ -43,11 +47,42 @@ export async function init(rootEl) {
     }
 
     // Prepare GSAP intro and scroll triggers (do not play yet)
-    introTl = buildIntroTimeline(rootEl);
+    introTl = buildIntroTimeline(isFirstLoad);
     scrollTriggers = createScrollTriggers(rootEl);
+
+    // Mark as no longer first load
+    if (isFirstLoad) {
+        isFirstLoad = false;
+    }
 }
 
 export async function destroy() {
+    // Clean up GSAP animations and reset header elements
+    if (introTl) {
+        introTl.kill();
+        introTl = null;
+    }
+
+    // Kill all ScrollTriggers
+    ScrollTrigger.getAll().forEach(trigger => {
+        trigger.kill();
+    });
+    scrollTriggers = [];
+
+    // Clear any GSAP inline styles from header elements AFTER animations are killed
+    // Note: We don't clear mask/showreel because they persist across pages
+    try {
+        const logo = document.querySelector('.logo');
+        const navItems = document.querySelectorAll('.nav_item');
+
+        // Set logo to black after clearing to maintain correct color on other pages
+        if (logo) {
+            gsap.set(logo, { clearProps: "all" });
+            gsap.set(logo, { color: "#1B1D1D" });
+        }
+        if (navItems.length) navItems.forEach(item => gsap.set(item, { clearProps: "all" }));
+    } catch (_) { }
+
     if (!videoRef) return;
     try { videoRef.pause(); } catch (_) { }
     try {

@@ -32,10 +32,20 @@ async function loadProjects() {
 
 // Create project card HTML
 function createProjectCard(project) {
+    const firstVideo = project.videos[0];
+    // Use previewUrl if available, otherwise fallback to videoUrl
+    const previewUrl = firstVideo?.previewUrl || firstVideo?.videoUrl || '';
     return `
         <div class="project-card" data-skills="${project.skills.join(',')}" data-project-id="${project.id}">
             <div class="project-thumbnail">
                 <img src="${project.thumbnail}" alt="${project.title}" loading="lazy" decoding="async">
+                <video class="project-preview-video" 
+                       muted 
+                       loop 
+                       playsinline 
+                       preload="none"
+                       data-src="${previewUrl}">
+                </video>
                 ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
                 <span class="category-tag">${project.category}</span>
             </div>
@@ -128,6 +138,83 @@ export async function init(rootEl, { search } = {}) {
             }
         });
     });
+
+    // Add hover preview for desktop only with concurrent load limits
+    if (window.matchMedia('(min-width: 768px) and (hover: hover)').matches) {
+        let activeLoads = 0;
+        const MAX_CONCURRENT_LOADS = 1; // Only load one video at a time
+        const HOVER_DELAY = 500; // Increased delay to 500ms
+
+        projectCards.forEach(card => {
+            let hoverTimeout;
+            const video = card.querySelector('.project-preview-video');
+            let isLoading = false;
+
+            card.addEventListener('mouseenter', () => {
+                // Delay to avoid loading on quick hover-overs
+                hoverTimeout = setTimeout(() => {
+                    if (!video || !video.dataset.src) return;
+
+                    // If video is already loaded and ready, just play it
+                    if (video.src && video.readyState >= 2) {
+                        video.currentTime = 0;
+                        video.play().catch(err => console.log('Preview play failed:', err));
+                        return;
+                    }
+
+                    // Only load new videos if under the limit
+                    if (!isLoading && activeLoads < MAX_CONCURRENT_LOADS) {
+                        isLoading = true;
+                        activeLoads++;
+
+                        // Load video source
+                        video.src = video.dataset.src;
+                        video.currentTime = 0;
+
+                        // Try to play the preview
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise
+                                .then(() => {
+                                    // Video started playing successfully
+                                    // Reset loading state once playing
+                                    isLoading = false;
+                                    activeLoads--;
+                                })
+                                .catch(err => {
+                                    console.log('Preview play failed:', err);
+                                    // Cleanup on play failure
+                                    isLoading = false;
+                                    activeLoads--;
+                                    // Unload video on failure
+                                    video.src = '';
+                                    video.load();
+                                });
+                        } else {
+                            // Play() returned undefined (synchronous play)
+                            isLoading = false;
+                            activeLoads--;
+                        }
+                    }
+                }, HOVER_DELAY);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimeout);
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                    // If video was still loading, cancel it and free resources
+                    if (isLoading) {
+                        video.src = '';
+                        video.load(); // Reset video element
+                        isLoading = false;
+                        activeLoads = Math.max(0, activeLoads - 1); // Ensure non-negative
+                    }
+                }
+            });
+        });
+    }
 
     // Check for filter parameter in URL and apply it
     const urlFilter = new URLSearchParams(search || window.location.search).get('filter');

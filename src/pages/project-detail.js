@@ -73,17 +73,45 @@ function updateProjectDetail(project, videoIndex = 0) {
     const projectContainer = document.querySelector('.project-detail-container');
     projectContainer.className = `project-detail-container format-${project.format}`;
 
-    // Teardown any previous video/player to avoid continued downloads
-    teardownCurrentVideo();
-
     // Create video player
     const videoContainer = document.querySelector('.project-video-container');
-    videoContainer.innerHTML = `
-        <video id="projectVideo" playsinline controls preload="metadata" muted>
-            <source src="${video.videoUrl}" type="video/mp4">
-            Your browser doesn't support HTML5 video.
-        </video>
-    `;
+    let existingVideo = document.getElementById('projectVideo');
+
+    if (existingVideo) {
+        // Update existing video instead of replacing it
+        existingVideo.pause();
+        const source = existingVideo.querySelector('source');
+        if (source) {
+            source.src = video.videoUrl;
+        } else {
+            const newSource = document.createElement('source');
+            newSource.src = video.videoUrl;
+            newSource.type = 'video/mp4';
+            existingVideo.appendChild(newSource);
+        }
+        existingVideo.load();
+    } else {
+        // No existing video, create new one
+        videoContainer.innerHTML = `
+            <video id="projectVideo" playsinline controls preload="metadata" muted>
+                <source src="${video.videoUrl}" type="video/mp4">
+                Your browser doesn't support HTML5 video.
+            </video>
+        `;
+    }
+
+    // Teardown only the player, not the video element
+    if (currentPlayer) {
+        try { currentPlayer.pause(); } catch (_) { }
+        try { currentPlayer.destroy(); } catch (_) { }
+        currentPlayer = null;
+    }
+
+    // Clear any previously moved controls
+    const customControlsContainer = document.querySelector('.custom-plyr-controls');
+    if (customControlsContainer) {
+        customControlsContainer.innerHTML = '';
+    }
 
     // Update project information
     document.getElementById('projectTitle').textContent = project.title;
