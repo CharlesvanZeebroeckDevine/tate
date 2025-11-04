@@ -43,7 +43,7 @@ function createProjectCard(project) {
                        muted 
                        loop 
                        playsinline 
-                       preload="none"
+                       preload="metadata"
                        data-src="${previewUrl}">
                 </video>
                 ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
@@ -141,12 +141,6 @@ export async function init(rootEl, { search } = {}) {
 
     // Add hover preview for desktop only with concurrent load limits
     const mediaQuery = window.matchMedia('(min-width: 768px) and (hover: hover)');
-    console.log('Video preview media query:', {
-        matches: mediaQuery.matches,
-        minWidth: window.innerWidth >= 768,
-        hasHover: window.matchMedia('(hover: hover)').matches,
-        projectCardsCount: projectCards.length
-    });
 
     if (mediaQuery.matches) {
         let activeLoads = 0;
@@ -159,44 +153,32 @@ export async function init(rootEl, { search } = {}) {
             let isLoading = false;
             let isHovering = false;
 
-            // Debug: Log if video element is missing or has no data-src
-            if (!video) {
-                console.warn(`Project card ${index} missing video element`);
-                return;
-            }
-            if (!video.dataset.src) {
-                console.warn(`Project card ${index} video missing data-src attribute:`, video);
+            // Ensure video element exists and has a source
+            if (!video || !video.dataset.src) {
                 return;
             }
 
             card.addEventListener('mouseenter', () => {
                 isHovering = true;
-                console.log(`Mouseenter on card ${index}, video data-src:`, video.dataset.src);
                 // Delay to avoid loading on quick hover-overs
                 hoverTimeout = setTimeout(() => {
                     // Check if we're still hovering after the delay
                     if (!isHovering || !video || !video.dataset.src) {
-                        console.log(`Skipping load for card ${index}:`, { isHovering, hasVideo: !!video, hasDataSrc: !!video?.dataset.src });
                         return;
                     }
 
                     // If video is already loaded and ready, just play it
                     if (video.src && video.readyState >= 2) {
-                        console.log(`Playing already-loaded video for card ${index}`);
                         card.classList.add('video-ready', 'video-playing');
                         video.currentTime = 0;
-                        video.play().catch(err => {
-                            // Ignore AbortError (expected when pause interrupts play)
-                            if (err.name !== 'AbortError') {
-                                console.log('Preview play failed:', err);
-                            }
+                        video.play().catch(() => {
+                            // Silently handle play errors
                         });
                         return;
                     }
 
                     // Only load new videos if under the limit
                     if (!isLoading && activeLoads < MAX_CONCURRENT_LOADS) {
-                        console.log(`Loading video for card ${index}:`, video.dataset.src);
                         isLoading = true;
                         activeLoads++;
 
@@ -212,26 +194,14 @@ export async function init(rootEl, { search } = {}) {
 
                         // Add error handler for video loading
                         const handleError = () => {
-                            console.error(`Video failed to load for card ${index}:`, videoSrc, video.error);
                             isLoading = false;
                             activeLoads--;
-                            if (video.error) {
-                                console.error('Video error details:', {
-                                    code: video.error.code,
-                                    message: video.error.message
-                                });
-                            }
                         };
                         video.addEventListener('error', handleError, { once: true });
 
-                        // Add loaded handler for debugging and to hide thumbnail
+                        // Add loaded handler to mark video as ready
                         const handleLoaded = () => {
-                            console.log(`Video loaded for card ${index}, readyState:`, video.readyState);
-                            // Hide thumbnail when video is ready
-                            const thumbnailImg = card.querySelector('.project-thumbnail img');
-                            if (thumbnailImg) {
-                                card.classList.add('video-ready');
-                            }
+                            card.classList.add('video-ready');
                         };
                         video.addEventListener('loadeddata', handleLoaded, { once: true });
 
@@ -240,9 +210,7 @@ export async function init(rootEl, { search } = {}) {
                         if (playPromise !== undefined) {
                             playPromise
                                 .then(() => {
-                                    console.log(`Video playing for card ${index}`);
                                     // Video started playing successfully
-                                    // Hide thumbnail when video is playing
                                     card.classList.add('video-playing');
                                     // Only keep playing if we're still hovering
                                     if (!isHovering) {
@@ -255,20 +223,18 @@ export async function init(rootEl, { search } = {}) {
                                     activeLoads--;
                                 })
                                 .catch(err => {
-                                    // AbortError is expected when pause() interrupts play() - don't treat as error                                             
+                                    // AbortError is expected when pause() interrupts play()
                                     if (err.name === 'AbortError') {
-                                        console.log(`Video play aborted for card ${index} (expected)`);
-                                        // User moved mouse away, which is fine - just cleanup                                                                  
+                                        // User moved mouse away - just cleanup
                                         isLoading = false;
                                         activeLoads--;
                                     } else {
-                                        // Real error - log and cleanup
-                                        console.error(`Preview play failed for card ${index}:`, err);
+                                        // Real error - cleanup
                                         isLoading = false;
                                         activeLoads--;
-                                        // Only unload on real errors, not AbortError                                                                           
+                                        // Only unload on real errors, not AbortError
                                         if (isHovering) {
-                                            // Still hovering but play failed - unload to prevent retry loops                                                   
+                                            // Still hovering but play failed - unload to prevent retry loops
                                             video.src = '';
                                             video.load();
                                         }
@@ -276,7 +242,6 @@ export async function init(rootEl, { search } = {}) {
                                 });
                         } else {
                             // Play() returned undefined (synchronous play)
-                            console.log(`Video play() returned undefined for card ${index}`);
                             isLoading = false;
                             activeLoads--;
                         }
@@ -294,13 +259,10 @@ export async function init(rootEl, { search } = {}) {
                     video.currentTime = 0;
                     // If video was still loading, cancel it and free resources
                     if (isLoading) {
-                        console.log(`Cancelling video load for card ${index} on mouseleave`);
                         video.src = '';
                         video.load(); // Reset video element
                         isLoading = false;
                         activeLoads = Math.max(0, activeLoads - 1); // Ensure non-negative
-                    } else {
-                        console.log(`Paused video for card ${index} on mouseleave`);
                     }
                 }
             });
