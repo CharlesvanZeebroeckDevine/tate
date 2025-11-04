@@ -149,16 +149,24 @@ export async function init(rootEl, { search } = {}) {
             let hoverTimeout;
             const video = card.querySelector('.project-preview-video');
             let isLoading = false;
+            let isHovering = false;
 
             card.addEventListener('mouseenter', () => {
+                isHovering = true;
                 // Delay to avoid loading on quick hover-overs
                 hoverTimeout = setTimeout(() => {
-                    if (!video || !video.dataset.src) return;
+                    // Check if we're still hovering after the delay
+                    if (!isHovering || !video || !video.dataset.src) return;
 
                     // If video is already loaded and ready, just play it
                     if (video.src && video.readyState >= 2) {
                         video.currentTime = 0;
-                        video.play().catch(err => console.log('Preview play failed:', err));
+                        video.play().catch(err => {
+                            // Ignore AbortError (expected when pause interrupts play)
+                            if (err.name !== 'AbortError') {
+                                console.log('Preview play failed:', err);
+                            }
+                        });
                         return;
                     }
 
@@ -177,18 +185,33 @@ export async function init(rootEl, { search } = {}) {
                             playPromise
                                 .then(() => {
                                     // Video started playing successfully
+                                    // Only keep playing if we're still hovering
+                                    if (!isHovering) {
+                                        video.pause();
+                                        video.currentTime = 0;
+                                    }
                                     // Reset loading state once playing
                                     isLoading = false;
                                     activeLoads--;
                                 })
                                 .catch(err => {
-                                    console.log('Preview play failed:', err);
-                                    // Cleanup on play failure
-                                    isLoading = false;
-                                    activeLoads--;
-                                    // Unload video on failure
-                                    video.src = '';
-                                    video.load();
+                                    // AbortError is expected when pause() interrupts play() - don't treat as error
+                                    if (err.name === 'AbortError') {
+                                        // User moved mouse away, which is fine - just cleanup
+                                        isLoading = false;
+                                        activeLoads--;
+                                    } else {
+                                        // Real error - log and cleanup
+                                        console.log('Preview play failed:', err);
+                                        isLoading = false;
+                                        activeLoads--;
+                                        // Only unload on real errors, not AbortError
+                                        if (isHovering) {
+                                            // Still hovering but play failed - unload to prevent retry loops
+                                            video.src = '';
+                                            video.load();
+                                        }
+                                    }
                                 });
                         } else {
                             // Play() returned undefined (synchronous play)
@@ -200,6 +223,7 @@ export async function init(rootEl, { search } = {}) {
             });
 
             card.addEventListener('mouseleave', () => {
+                isHovering = false;
                 clearTimeout(hoverTimeout);
                 if (video) {
                     video.pause();
