@@ -252,6 +252,12 @@ function handleProjectNotFound() {
 
 // Initialize project detail page
 export async function init(_rootEl, { search } = {}) {
+    // Hide the mask in case user navigated directly to this page
+    const mask = document.querySelector('.mask');
+    if (mask) {
+        mask.style.display = 'none';
+    }
+
     const projectId = getProjectIdFromSearch(search);
 
     if (!projectId) {

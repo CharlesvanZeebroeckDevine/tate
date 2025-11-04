@@ -9,6 +9,9 @@ gsap.registerPlugin(SplitText);
 export function buildProjectsIntroTimeline() {
     console.log('buildProjectsIntroTimeline called');
 
+    // Always hide the mask when on projects page (in case user navigated directly here)
+    gsap.set(".mask", { display: "none" });
+
     // Skip animations if user prefers reduced motion or is on mobile
     if (shouldReduceMotion()) {
         console.log('Reduced motion detected, skipping animations');
@@ -50,7 +53,7 @@ export function buildProjectsIntroTimeline() {
             x: -50,
             y: 100,
             filter: "blur(10px)",
-            scale: 0.1
+            scale: 0
         },
         {
             duration: 0.5,
