@@ -44,7 +44,8 @@ function createProjectCard(project) {
                        loop 
                        playsinline 
                        preload="metadata"
-                       data-src="${previewUrl}">
+                       data-src="${previewUrl}"
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; z-index: 10; pointer-events: none; transition: opacity 0.3s ease; background: black;">
                 </video>
                 ${project.videos.length > 1 ? `<div class="video-count-badge">${project.videos.length} videos</div>` : ''}
                 <span class="category-tag">${project.category}</span>
@@ -170,6 +171,11 @@ export async function init(rootEl, { search } = {}) {
                     // If video is already loaded and ready, just play it
                     if (video.src && video.readyState >= 2) {
                         card.classList.add('video-ready', 'video-playing');
+                        // Force video visibility with inline styles
+                        video.style.opacity = '1';
+                        // Hide thumbnail with inline styles
+                        const img = card.querySelector('.project-thumbnail img');
+                        if (img) img.style.opacity = '0';
                         video.currentTime = 0;
                         video.play().catch(() => {
                             // Silently handle play errors
@@ -202,6 +208,11 @@ export async function init(rootEl, { search } = {}) {
                         // Add loaded handler to mark video as ready
                         const handleLoaded = () => {
                             card.classList.add('video-ready');
+                            // Force video visibility with inline styles
+                            video.style.opacity = '1';
+                            // Hide thumbnail with inline styles
+                            const img = card.querySelector('.project-thumbnail img');
+                            if (img) img.style.opacity = '0';
                         };
                         video.addEventListener('loadeddata', handleLoaded, { once: true });
 
@@ -257,6 +268,10 @@ export async function init(rootEl, { search } = {}) {
                 if (video) {
                     video.pause();
                     video.currentTime = 0;
+                    // Reset inline styles to hide video and show thumbnail
+                    video.style.opacity = '0';
+                    const img = card.querySelector('.project-thumbnail img');
+                    if (img) img.style.opacity = '1';
                     // If video was still loading, cancel it and free resources
                     if (isLoading) {
                         video.src = '';
