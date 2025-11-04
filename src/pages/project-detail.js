@@ -1,5 +1,7 @@
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
+import { buildProjectDetailIntroTimeline, animateVideoChange } from './project-detail.gsap.js';
+
 // Get project ID from URL parameters
 function getProjectIdFromSearch(search) {
     const urlParams = new URLSearchParams(search || window.location.search);
@@ -22,6 +24,15 @@ async function loadProjects() {
 let currentProject = null;
 let currentVideoIndex = 0;
 let currentPlayer = null;
+
+// Store event listener references for proper cleanup
+let prevVideoHandler = null;
+let nextVideoHandler = null;
+let userInteractionHandlers = {
+    click: null,
+    touchstart: null,
+    keydown: null
+};
 
 // Ensure current video fully unloads to stop network activity
 function teardownCurrentVideo() {
@@ -61,6 +72,7 @@ function updateProjectDetail(project, videoIndex = 0) {
     }
 
     const video = project.videos[videoIndex];
+    console.log('updateProjectDetail called with videoIndex:', videoIndex, 'video:', video);
     if (!video) {
         handleProjectNotFound();
         return;
@@ -73,34 +85,7 @@ function updateProjectDetail(project, videoIndex = 0) {
     const projectContainer = document.querySelector('.project-detail-container');
     projectContainer.className = `project-detail-container format-${project.format}`;
 
-    // Create video player
-    const videoContainer = document.querySelector('.project-video-container');
-    let existingVideo = document.getElementById('projectVideo');
-
-    if (existingVideo) {
-        // Update existing video instead of replacing it
-        existingVideo.pause();
-        const source = existingVideo.querySelector('source');
-        if (source) {
-            source.src = video.videoUrl;
-        } else {
-            const newSource = document.createElement('source');
-            newSource.src = video.videoUrl;
-            newSource.type = 'video/mp4';
-            existingVideo.appendChild(newSource);
-        }
-        existingVideo.load();
-    } else {
-        // No existing video, create new one
-        videoContainer.innerHTML = `
-            <video id="projectVideo" playsinline controls preload="metadata" muted>
-                <source src="${video.videoUrl}" type="video/mp4">
-                Your browser doesn't support HTML5 video.
-            </video>
-        `;
-    }
-
-    // Teardown only the player, not the video element
+    // Teardown the player FIRST before updating video element
     if (currentPlayer) {
         try { currentPlayer.pause(); } catch (_) { }
         try { currentPlayer.destroy(); } catch (_) { }
@@ -112,6 +97,16 @@ function updateProjectDetail(project, videoIndex = 0) {
     if (customControlsContainer) {
         customControlsContainer.innerHTML = '';
     }
+
+    // Always recreate the video element to ensure clean state
+    const videoContainer = document.querySelector('.project-video-container');
+    console.log('Creating new video element for', video.videoUrl);
+    videoContainer.innerHTML = `
+        <video id="projectVideo" playsinline controls preload="metadata" muted>
+            <source src="${video.videoUrl}" type="video/mp4">
+            Your browser doesn't support HTML5 video.
+        </video>
+    `;
 
     // Update project information
     document.getElementById('projectTitle').textContent = project.title;
@@ -171,8 +166,17 @@ function updateVideoNavigation(project, videoIndex) {
 function navigateToPreviousVideo() {
     if (currentProject && currentVideoIndex > 0) {
         currentVideoIndex--;
+        console.log('Navigating to previous video, new index:', currentVideoIndex);
+
+        // Trigger video change animation
+        animateVideoChange();
+
         updateProjectDetail(currentProject, currentVideoIndex);
-        initializeVideoPlayer();
+
+        // Wait for video element to update before initializing player
+        setTimeout(() => {
+            initializeVideoPlayer();
+        }, 50);
     }
 }
 
@@ -180,8 +184,17 @@ function navigateToPreviousVideo() {
 function navigateToNextVideo() {
     if (currentProject && currentVideoIndex < currentProject.videos.length - 1) {
         currentVideoIndex++;
+        console.log('Navigating to next video, new index:', currentVideoIndex);
+
+        // Trigger video change animation
+        animateVideoChange();
+
         updateProjectDetail(currentProject, currentVideoIndex);
-        initializeVideoPlayer();
+
+        // Wait for video element to update before initializing player
+        setTimeout(() => {
+            initializeVideoPlayer();
+        }, 50);
     }
 }
 
@@ -277,12 +290,23 @@ export async function init(_rootEl, { search } = {}) {
     currentVideoIndex = 0;
     updateProjectDetail(currentProject, currentVideoIndex);
 
-    // Add navigation event listeners
-    document.getElementById('prevVideo').addEventListener('click', navigateToPreviousVideo);
-    document.getElementById('nextVideo').addEventListener('click', navigateToNextVideo);
+    // Store and add navigation event listeners
+    prevVideoHandler = navigateToPreviousVideo;
+    nextVideoHandler = navigateToNextVideo;
+    document.getElementById('prevVideo').addEventListener('click', prevVideoHandler);
+    document.getElementById('nextVideo').addEventListener('click', nextVideoHandler);
 
     // Initialize video player
     initializeVideoPlayer();
+
+    // Trigger entrance animations after content is fully loaded
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            console.log('About to call buildProjectDetailIntroTimeline');
+            buildProjectDetailIntroTimeline();
+        }, 100);
+    });
 
     // Add user interaction listener for Safari autoplay
     let hasUserInteracted = false;
@@ -299,12 +323,52 @@ export async function init(_rootEl, { search } = {}) {
         }
     };
 
-    // Listen for various user interactions that Safari allows
+    // Store and listen for various user interactions that Safari allows
+    userInteractionHandlers.click = handleUserInteraction;
+    userInteractionHandlers.touchstart = handleUserInteraction;
+    userInteractionHandlers.keydown = handleUserInteraction;
     document.addEventListener('click', handleUserInteraction, { once: true });
     document.addEventListener('touchstart', handleUserInteraction, { once: true });
     document.addEventListener('keydown', handleUserInteraction, { once: true });
 }
 
 export async function destroy() {
+    // Teardown video player
     try { teardownCurrentVideo(); } catch (_) { }
+
+    // Remove navigation event listeners
+    if (prevVideoHandler) {
+        const prevBtn = document.getElementById('prevVideo');
+        if (prevBtn) {
+            prevBtn.removeEventListener('click', prevVideoHandler);
+        }
+        prevVideoHandler = null;
+    }
+
+    if (nextVideoHandler) {
+        const nextBtn = document.getElementById('nextVideo');
+        if (nextBtn) {
+            nextBtn.removeEventListener('click', nextVideoHandler);
+        }
+        nextVideoHandler = null;
+    }
+
+    // Remove user interaction listeners
+    if (userInteractionHandlers.click) {
+        document.removeEventListener('click', userInteractionHandlers.click);
+        userInteractionHandlers.click = null;
+    }
+    if (userInteractionHandlers.touchstart) {
+        document.removeEventListener('touchstart', userInteractionHandlers.touchstart);
+        userInteractionHandlers.touchstart = null;
+    }
+    if (userInteractionHandlers.keydown) {
+        document.removeEventListener('keydown', userInteractionHandlers.keydown);
+        userInteractionHandlers.keydown = null;
+    }
+
+    // Reset module state
+    currentProject = null;
+    currentVideoIndex = 0;
+    currentPlayer = null;
 }
