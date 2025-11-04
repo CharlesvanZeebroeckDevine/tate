@@ -67,7 +67,6 @@ span {
 .format-h .project-video-container {
     margin-top: 3rem;
     width: 50%;
-    aspect-ratio: 16 / 9;
 }
 
 .format-v .text {

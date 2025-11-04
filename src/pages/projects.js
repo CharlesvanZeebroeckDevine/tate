@@ -103,8 +103,10 @@ export async function init(rootEl, { search } = {}) {
     // Render and add event listeners for filter buttons
     renderFilterButtons();
 
-    // Build and start intro timeline
-    introTl = buildProjectsIntroTimeline();
+    // Build and start intro timeline (wait for next frame to ensure DOM is ready)
+    requestAnimationFrame(() => {
+        introTl = buildProjectsIntroTimeline();
+    });
 
     // Display all projects
     projectsGrid.innerHTML = projects.map(project => createProjectCard(project)).join('');
