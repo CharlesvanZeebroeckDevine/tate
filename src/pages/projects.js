@@ -140,26 +140,49 @@ export async function init(rootEl, { search } = {}) {
     });
 
     // Add hover preview for desktop only with concurrent load limits
-    if (window.matchMedia('(min-width: 768px) and (hover: hover)').matches) {
+    const mediaQuery = window.matchMedia('(min-width: 768px) and (hover: hover)');
+    console.log('Video preview media query:', {
+        matches: mediaQuery.matches,
+        minWidth: window.innerWidth >= 768,
+        hasHover: window.matchMedia('(hover: hover)').matches,
+        projectCardsCount: projectCards.length
+    });
+
+    if (mediaQuery.matches) {
         let activeLoads = 0;
         const MAX_CONCURRENT_LOADS = 1; // Only load one video at a time
         const HOVER_DELAY = 500; // Increased delay to 500ms
 
-        projectCards.forEach(card => {
+        projectCards.forEach((card, index) => {
             let hoverTimeout;
             const video = card.querySelector('.project-preview-video');
             let isLoading = false;
             let isHovering = false;
 
+            // Debug: Log if video element is missing or has no data-src
+            if (!video) {
+                console.warn(`Project card ${index} missing video element`);
+                return;
+            }
+            if (!video.dataset.src) {
+                console.warn(`Project card ${index} video missing data-src attribute:`, video);
+                return;
+            }
+
             card.addEventListener('mouseenter', () => {
                 isHovering = true;
+                console.log(`Mouseenter on card ${index}, video data-src:`, video.dataset.src);
                 // Delay to avoid loading on quick hover-overs
                 hoverTimeout = setTimeout(() => {
                     // Check if we're still hovering after the delay
-                    if (!isHovering || !video || !video.dataset.src) return;
+                    if (!isHovering || !video || !video.dataset.src) {
+                        console.log(`Skipping load for card ${index}:`, { isHovering, hasVideo: !!video, hasDataSrc: !!video?.dataset.src });
+                        return;
+                    }
 
                     // If video is already loaded and ready, just play it
                     if (video.src && video.readyState >= 2) {
+                        console.log(`Playing already-loaded video for card ${index}`);
                         video.currentTime = 0;
                         video.play().catch(err => {
                             // Ignore AbortError (expected when pause interrupts play)
@@ -172,18 +195,46 @@ export async function init(rootEl, { search } = {}) {
 
                     // Only load new videos if under the limit
                     if (!isLoading && activeLoads < MAX_CONCURRENT_LOADS) {
+                        console.log(`Loading video for card ${index}:`, video.dataset.src);
                         isLoading = true;
                         activeLoads++;
 
-                        // Load video source
-                        video.src = video.dataset.src;
+                        // Load video source - ensure path is correct (handle both ./ and /)
+                        let videoSrc = video.dataset.src;
+                        // Normalize path: if it starts with ./, convert to absolute path
+                        if (videoSrc.startsWith('./')) {
+                            videoSrc = videoSrc.substring(1); // Remove leading ./
+                        }
+                        video.src = videoSrc;
                         video.currentTime = 0;
+                        video.load(); // Explicitly load the video after setting src
+
+                        // Add error handler for video loading
+                        const handleError = () => {
+                            console.error(`Video failed to load for card ${index}:`, videoSrc, video.error);
+                            isLoading = false;
+                            activeLoads--;
+                            if (video.error) {
+                                console.error('Video error details:', {
+                                    code: video.error.code,
+                                    message: video.error.message
+                                });
+                            }
+                        };
+                        video.addEventListener('error', handleError, { once: true });
+
+                        // Add loaded handler for debugging
+                        const handleLoaded = () => {
+                            console.log(`Video loaded for card ${index}, readyState:`, video.readyState);
+                        };
+                        video.addEventListener('loadeddata', handleLoaded, { once: true });
 
                         // Try to play the preview
                         const playPromise = video.play();
                         if (playPromise !== undefined) {
                             playPromise
                                 .then(() => {
+                                    console.log(`Video playing for card ${index}`);
                                     // Video started playing successfully
                                     // Only keep playing if we're still hovering
                                     if (!isHovering) {
@@ -195,19 +246,20 @@ export async function init(rootEl, { search } = {}) {
                                     activeLoads--;
                                 })
                                 .catch(err => {
-                                    // AbortError is expected when pause() interrupts play() - don't treat as error
+                                    // AbortError is expected when pause() interrupts play() - don't treat as error                                             
                                     if (err.name === 'AbortError') {
-                                        // User moved mouse away, which is fine - just cleanup
+                                        console.log(`Video play aborted for card ${index} (expected)`);
+                                        // User moved mouse away, which is fine - just cleanup                                                                  
                                         isLoading = false;
                                         activeLoads--;
                                     } else {
                                         // Real error - log and cleanup
-                                        console.log('Preview play failed:', err);
+                                        console.error(`Preview play failed for card ${index}:`, err);
                                         isLoading = false;
                                         activeLoads--;
-                                        // Only unload on real errors, not AbortError
+                                        // Only unload on real errors, not AbortError                                                                           
                                         if (isHovering) {
-                                            // Still hovering but play failed - unload to prevent retry loops
+                                            // Still hovering but play failed - unload to prevent retry loops                                                   
                                             video.src = '';
                                             video.load();
                                         }
@@ -215,6 +267,7 @@ export async function init(rootEl, { search } = {}) {
                                 });
                         } else {
                             // Play() returned undefined (synchronous play)
+                            console.log(`Video play() returned undefined for card ${index}`);
                             isLoading = false;
                             activeLoads--;
                         }
@@ -230,10 +283,13 @@ export async function init(rootEl, { search } = {}) {
                     video.currentTime = 0;
                     // If video was still loading, cancel it and free resources
                     if (isLoading) {
+                        console.log(`Cancelling video load for card ${index} on mouseleave`);
                         video.src = '';
                         video.load(); // Reset video element
                         isLoading = false;
                         activeLoads = Math.max(0, activeLoads - 1); // Ensure non-negative
+                    } else {
+                        console.log(`Paused video for card ${index} on mouseleave`);
                     }
                 }
             });
