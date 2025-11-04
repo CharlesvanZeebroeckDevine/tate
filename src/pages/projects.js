@@ -183,6 +183,7 @@ export async function init(rootEl, { search } = {}) {
                     // If video is already loaded and ready, just play it
                     if (video.src && video.readyState >= 2) {
                         console.log(`Playing already-loaded video for card ${index}`);
+                        card.classList.add('video-ready', 'video-playing');
                         video.currentTime = 0;
                         video.play().catch(err => {
                             // Ignore AbortError (expected when pause interrupts play)
@@ -223,9 +224,14 @@ export async function init(rootEl, { search } = {}) {
                         };
                         video.addEventListener('error', handleError, { once: true });
 
-                        // Add loaded handler for debugging
+                        // Add loaded handler for debugging and to hide thumbnail
                         const handleLoaded = () => {
                             console.log(`Video loaded for card ${index}, readyState:`, video.readyState);
+                            // Hide thumbnail when video is ready
+                            const thumbnailImg = card.querySelector('.project-thumbnail img');
+                            if (thumbnailImg) {
+                                card.classList.add('video-ready');
+                            }
                         };
                         video.addEventListener('loadeddata', handleLoaded, { once: true });
 
@@ -236,10 +242,13 @@ export async function init(rootEl, { search } = {}) {
                                 .then(() => {
                                     console.log(`Video playing for card ${index}`);
                                     // Video started playing successfully
+                                    // Hide thumbnail when video is playing
+                                    card.classList.add('video-playing');
                                     // Only keep playing if we're still hovering
                                     if (!isHovering) {
                                         video.pause();
                                         video.currentTime = 0;
+                                        card.classList.remove('video-playing');
                                     }
                                     // Reset loading state once playing
                                     isLoading = false;
@@ -278,6 +287,8 @@ export async function init(rootEl, { search } = {}) {
             card.addEventListener('mouseleave', () => {
                 isHovering = false;
                 clearTimeout(hoverTimeout);
+                // Remove classes to show thumbnail again
+                card.classList.remove('video-playing', 'video-ready');
                 if (video) {
                     video.pause();
                     video.currentTime = 0;

@@ -439,7 +439,9 @@ input[type="button"],
   opacity: 1;
 }
 
-.project-card:hover .project-thumbnail img {
+/* Hide thumbnail when video is ready/playing and card is hovered */
+.project-card:hover.video-ready .project-thumbnail img,
+.project-card:hover.video-playing .project-thumbnail img {
   opacity: 0;
 }
 
