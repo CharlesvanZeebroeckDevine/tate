@@ -16,7 +16,11 @@
   - `X-Frame-Options: DENY`: Prevents clickjacking attacks
   - `X-XSS-Protection`: Legacy XSS protection (for older browsers)
   - `Referrer-Policy`: Controls referrer information
+  - `Permissions-Policy`: Controls which browser features and APIs can be used (per [W3C spec](https://www.w3.org/TR/permissions-policy-1/))
   - `Content-Security-Policy`: Restricts resource loading to prevent XSS and injection attacks
+- **Permissions-Policy Configuration**:
+  - **Enabled**: `autoplay=(self)`, `fullscreen=(self)`, `picture-in-picture=(self)` - for video functionality
+  - **Disabled**: All other features (camera, microphone, geolocation, payment, etc.) - not needed for this portfolio site
 - **Status**: ✅ Fixed
 
 ## Potential Issues to Check (Platform-Specific)
