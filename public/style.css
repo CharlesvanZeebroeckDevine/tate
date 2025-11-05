@@ -33,6 +33,12 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  /* Ensure animated elements are always visible */
+  .projects_header h2,
+  .filter-btn {
+    opacity: 1 !important;
+  }
 }
 
 /* Grain effect */
@@ -358,6 +364,8 @@ input[type="button"],
   font-weight: 600;
   text-transform: uppercase;
   margin: 0;
+  opacity: 0;
+  /* Hidden initially for GSAP animation */
 }
 
 .filter_buttons {
@@ -376,6 +384,8 @@ input[type="button"],
   font-weight: 600;
   text-transform: uppercase;
   transition: none;
+  opacity: 0;
+  /* Hidden initially for GSAP animation */
 }
 
 .filter-btn:hover,
@@ -387,7 +397,7 @@ input[type="button"],
 
 .projects_container {
   padding: 0 8rem 4rem 8rem;
-  margin-top: 4rem;
+  margin-bottom: 12rem;
 }
 
 .projects_grid {
@@ -501,8 +511,6 @@ input[type="button"],
 .project-detail-container {
   margin: 0 auto;
   padding: 0rem 8rem;
-  min-height: 50vh;
-  max-height: 100vh;
 }
 
 .footer_container {
@@ -610,6 +618,7 @@ input[type="button"],
 
   .projects_container {
     padding: 0 4rem 4rem 4rem;
+    margin-bottom: 4rem;
   }
 
   .projects_header {
@@ -631,6 +640,8 @@ input[type="button"],
 
   .projects_header h2 {
     font-size: 4rem;
+    opacity: 1 !important;
+    /* Always visible on mobile */
   }
 
   .filter_buttons {
@@ -641,6 +652,8 @@ input[type="button"],
   .filter-btn {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+    opacity: 1 !important;
+    /* Always visible on mobile */
   }
 
   .projects_container {

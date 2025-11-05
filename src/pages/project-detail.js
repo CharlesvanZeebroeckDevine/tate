@@ -372,3 +372,23 @@ export async function destroy() {
     currentVideoIndex = 0;
     currentPlayer = null;
 }
+
+// Export function to prepare transition to home page
+export async function prepareHomeTransition() {
+    const { gsap } = await import('gsap');
+
+    // Get the mask element
+    const mask = document.querySelector('.mask');
+    if (!mask) return;
+
+    // Animate mask down to cover the page before transition
+    return new Promise((resolve) => {
+        gsap.set(mask, { display: 'block', y: '-100vh' });
+        gsap.to(mask, {
+            duration: 0.6,
+            y: 0,
+            ease: "expo.inOut",
+            onComplete: resolve
+        });
+    });
+}

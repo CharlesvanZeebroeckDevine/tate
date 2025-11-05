@@ -15,10 +15,13 @@ export function buildProjectsIntroTimeline() {
     // Skip animations if user prefers reduced motion or is on mobile
     if (shouldReduceMotion()) {
         console.log('Reduced motion detected, skipping animations');
-        gsap.set(".projects_header h2", { yPercent: 0, opacity: 1 });
-        gsap.set(".filter-btn", { y: 0, scale: 1, filter: "blur(0px)" });
+        gsap.set(".projects_header h2", { opacity: 1, clearProps: "all" });
+        gsap.set(".filter-btn", { opacity: 1, clearProps: "all" });
         return;
     }
+
+    // Set initial visible state for title before splitting
+    gsap.set(".projects_header h2", { opacity: 1 });
 
     // Create timeline for page entrance animations
     const tl = gsap.timeline({
@@ -53,7 +56,8 @@ export function buildProjectsIntroTimeline() {
             x: -50,
             y: 100,
             filter: "blur(10px)",
-            scale: 0
+            scale: 0,
+            opacity: 0
         },
         {
             duration: 0.5,
@@ -61,9 +65,10 @@ export function buildProjectsIntroTimeline() {
             x: 0,
             filter: "blur(0px)",
             scale: 1,
+            opacity: 1,
             stagger: 0.15,
             ease: "power4.out",
-            clearProps: "all" // Clear inline styles after animation
+            clearProps: "x,y,filter,scale" // Clear transform styles but keep opacity
         },
         0.5); // Start slightly after the title animation begins
 

@@ -12,6 +12,7 @@
     text-transform: uppercase;
     line-height: 90%;
     opacity: 0;
+    margin-bottom: 2rem;
 }
 
 p {

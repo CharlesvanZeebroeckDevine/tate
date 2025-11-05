@@ -6,8 +6,9 @@ let videoRef = null;
 let introTl = null;
 let scrollTriggers = [];
 let isFirstLoad = true;
+let previousPath = null;
 
-export async function init(rootEl) {
+export async function init(rootEl, ctx) {
     const video = rootEl.querySelector('#player');
     if (!video) return;
 
@@ -46,14 +47,24 @@ export async function init(rootEl) {
         window.cursor.initShowreel(video);
     }
 
+    // Check if mask is visible (means we came from a page with transition)
+    const mask = document.querySelector('.mask');
+    const maskIsVisible = mask && window.getComputedStyle(mask).display !== 'none';
+
+    // Force mask animation if coming from a transition or first load
+    const shouldPlayMaskAnimation = isFirstLoad || maskIsVisible;
+
     // Prepare GSAP intro and scroll triggers (do not play yet)
-    introTl = buildIntroTimeline(isFirstLoad);
+    introTl = buildIntroTimeline(shouldPlayMaskAnimation);
     scrollTriggers = createScrollTriggers(rootEl);
 
     // Mark as no longer first load
     if (isFirstLoad) {
         isFirstLoad = false;
     }
+
+    // Store current path for next navigation
+    previousPath = ctx?.path || window.location.pathname;
 }
 
 export async function destroy() {

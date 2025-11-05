@@ -103,13 +103,16 @@ export async function init(rootEl, { search } = {}) {
     // Render and add event listeners for filter buttons
     renderFilterButtons();
 
-    // Build and start intro timeline (wait for next frame to ensure DOM is ready)
-    requestAnimationFrame(() => {
-        introTl = buildProjectsIntroTimeline();
-    });
-
     // Display all projects
     projectsGrid.innerHTML = projects.map(project => createProjectCard(project)).join('');
+
+    // Build and start intro timeline after DOM is fully rendered
+    // Use double requestAnimationFrame to ensure elements are painted
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            introTl = buildProjectsIntroTimeline();
+        });
+    });
 
     // Animate project cards after they're loaded
     animateProjectCards();
@@ -308,4 +311,24 @@ export async function destroy() {
     scrollTriggers = [];
 
     // Events are attached to elements that will be removed on unmount; no global cleanup required
+}
+
+// Export function to prepare transition to home page
+export async function prepareHomeTransition() {
+    const { gsap } = await import('gsap');
+
+    // Get the mask element
+    const mask = document.querySelector('.mask');
+    if (!mask) return;
+
+    // Animate mask down to cover the page before transition
+    return new Promise((resolve) => {
+        gsap.set(mask, { display: 'block', y: '-100vh' });
+        gsap.to(mask, {
+            duration: 0.6,
+            y: 0,
+            ease: "expo.inOut",
+            onComplete: resolve
+        });
+    });
 }

@@ -76,6 +76,25 @@ async function mount(route, ctx, replace = false) {
     const container = document.getElementById(viewContainerId);
     if (!container) return;
 
+    // Check if we're transitioning to home from projects or project-detail
+    const isFromProjectsOrDetail = current.path && (
+        current.path === '/projects' ||
+        current.path === '/projects.html' ||
+        current.path === '/project-detail' ||
+        current.path === '/project-detail.html'
+    );
+    const isToHome = route.name === 'home';
+    const shouldTransition = isFromProjectsOrDetail && isToHome;
+
+    // If transitioning to home, animate mask down first
+    if (shouldTransition && current.module && typeof current.module.prepareHomeTransition === 'function') {
+        try {
+            await current.module.prepareHomeTransition();
+        } catch (e) {
+            console.log('Transition animation skipped:', e);
+        }
+    }
+
     // Prepare new view element
     const html = await fetchView(route.viewUrl);
     const wrapper = document.createElement('div');
