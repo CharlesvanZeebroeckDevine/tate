@@ -21,26 +21,27 @@
 - **Permissions-Policy Configuration**:
   - **Enabled**: `autoplay=(self)`, `fullscreen=(self)`, `picture-in-picture=(self)` - for video functionality
   - **Disabled**: All other features (camera, microphone, geolocation, payment, etc.) - not needed for this portfolio site
+- **CSP Configuration** (Fixed warnings):
+  - ✅ Removed `unsafe-inline` from `script-src` (no inline scripts detected)
+  - ✅ Removed `unsafe-eval` from `script-src` (GSAP should work without it)
+  - ✅ Fixed invalid `video-src` directive → changed to `media-src` (correct CSP directive)
+  - ⚠️ **Note**: If GSAP animations break after deployment, you may need to add back `'unsafe-eval'` to `script-src`
 - **Status**: ✅ Fixed
 
 ## Potential Issues to Check (Platform-Specific)
 
-### 3. HTTP to HTTPS Redirect
+### ✅ 3. HTTP to HTTPS Redirect (AUTOMATIC ON NETLIFY)
 **Issue**: Users might access your site via HTTP, which should redirect to HTTPS.
-- **Current Status**: The redirect syntax in `_redirects` depends on your hosting platform
-- **Solutions**:
-  - **Netlify**: The `_redirects` file should work, but HTTPS redirect is usually automatic
-  - **Vercel**: Configure in `vercel.json` or use platform settings
-  - **Cloudflare Pages**: Configure in dashboard or `_redirects` file
-  - **Other platforms**: Check your hosting provider's documentation
+- **Current Status**: ✅ Netlify automatically handles HTTP to HTTPS redirects
+- **Hosting**: Hostinger + Netlify with Let's Encrypt certificate
+- **Note**: Netlify automatically redirects all HTTP traffic to HTTPS, so no additional configuration needed
 
-### 4. Certificate Configuration at Hosting Level
-**Possible issues**:
-- **Certificate not properly installed**: Even if registered, the certificate might not be correctly configured on your hosting platform
-- **Certificate expired**: Check certificate expiration date
-- **Certificate not covering all subdomains**: If using subdomains, ensure wildcard certificate or SAN certificate covers them
-- **Certificate chain incomplete**: Missing intermediate certificates
-- **TLS version mismatch**: Old TLS versions (1.0, 1.1) are considered insecure
+### ✅ 4. Certificate Configuration (VERIFIED)
+**Status**: ✅ All SSL tests passing
+- **Certificate**: Let's Encrypt (issued through Netlify)
+- **SSL Tests**: All passing ✅
+- **Hosting**: Netlify automatically manages certificate renewal
+- **Note**: Since SSL tests pass, the certificate is properly configured and valid
 
 ### ✅ 5. Service Worker HTTPS Requirement (FIXED)
 **Issue**: Service workers only work over HTTPS (or localhost).
@@ -72,26 +73,33 @@
    - Verify certificate details
    - Check expiration date
 
-## Common Certificate Issues
+## Netlify-Specific Configuration
 
-1. **Certificate Not Active**: Certificate might be registered but not activated on the server
-2. **Wrong Domain**: Certificate might be for a different domain/subdomain
-3. **Incomplete Chain**: Missing intermediate certificates
-4. **Expired Certificate**: Certificate has expired
-5. **Self-Signed Certificate**: Using a self-signed certificate (not trusted by browsers)
-6. **Platform-Specific**: Some platforms require specific configuration:
-   - Netlify: Automatic HTTPS, but check domain settings
-   - Vercel: Automatic HTTPS, verify domain in dashboard
-   - Cloudflare: Check SSL/TLS settings in dashboard
+Since you're using **Netlify with Let's Encrypt**:
+- ✅ **HTTPS Redirect**: Automatic (no configuration needed)
+- ✅ **Certificate Management**: Automatic renewal by Netlify
+- ✅ **Headers File**: `public/_headers` is automatically processed by Netlify
+- ✅ **Redirects File**: `public/_redirects` is automatically processed by Netlify
+- ✅ **SSL Tests**: All passing (confirmed)
+
+**Note**: Netlify automatically:
+- Issues and renews Let's Encrypt certificates
+- Redirects HTTP to HTTPS
+- Processes `_headers` and `_redirects` files from the `public` folder
 
 ## Next Steps
 
 1. ✅ Fixed SVG mixed content
-2. ✅ Added security headers
-3. ⚠️ Verify HTTPS redirect works on your hosting platform
-4. ⚠️ Check certificate status in your hosting dashboard
-5. ⚠️ Test with SSL Labs
-6. ⚠️ Review browser console for any security warnings
+2. ✅ Added security headers (including Permissions-Policy)
+3. ✅ HTTPS redirect (automatic on Netlify)
+4. ✅ Certificate verified (SSL tests passing)
+5. ✅ Service worker HTTPS check added
+6. ⚠️ **Deploy to Netlify** - After deploying, verify:
+   - Test at https://securityheaders.com/ to confirm all headers are present
+   - Check browser console for any security warnings or CSP violations
+   - Verify the site shows as secure in browser
+   - **If GSAP animations don't work**: Add `'unsafe-eval'` back to `script-src` in CSP (though modern GSAP shouldn't need it)
+   - **Clear browser cache** if security warnings persist (browser may cache old headers)
 
 ## Additional Recommendations
 
