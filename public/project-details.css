@@ -52,6 +52,7 @@ span {
     grid-area: 2 / 1 / 2 / 2;
     display: flex;
     gap: 7rem;
+    margin-top: 2rem;
 }
 
 .project-detail {
