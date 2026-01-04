@@ -205,6 +205,8 @@ input[type="button"],
   -webkit-transform: translate(-50%, -50%) scale(0.25);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000px;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .cursor-dot.expanded {
@@ -218,6 +220,8 @@ input[type="button"],
   -webkit-transform: translate(-50%, -50%) scale(2);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000px;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .cursor-dot.hovering {
@@ -404,6 +408,7 @@ input[type="button"],
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 2rem;
+  align-items: start;
 }
 
 .project-card {
@@ -679,6 +684,15 @@ input[type="button"],
   /* Disable transitions on mobile */
   * {
     transition: none !important;
+    cursor: auto !important;
+  }
+
+  .cursor-dot {
+    display: none !important;
+  }
+
+  .mask {
+    display: none !important;
   }
 
   header {

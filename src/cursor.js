@@ -7,6 +7,11 @@ class CustomCursor {
     }
 
     init() {
+        // Only initialize custom cursor on devices with a fine pointer (mouse/trackpad)
+        if (!window.matchMedia('(pointer: fine)').matches) {
+            return;
+        }
+
         // Create cursor dot element
         this.cursorDot = document.createElement('div');
         this.cursorDot.className = 'cursor-dot';
@@ -43,6 +48,9 @@ class CustomCursor {
 
     // Method to add showreel-specific functionality
     initShowreel(videoElement) {
+        // If cursor wasn't initialized (e.g. mobile), do nothing
+        if (!this.cursorDot || !this.soundIconContainer) return;
+
         if (!videoElement) return;
 
         let soundEnabled = false;

@@ -39,10 +39,17 @@ function isAssetPath(pathname) {
     return /\.(png|jpe?g|gif|svg|webp|mp4|webm|mp3|wav|css|js|json|txt)$/i.test(pathname);
 }
 
+const viewCache = new Map();
+
 async function fetchView(url) {
+    if (viewCache.has(url)) {
+        return viewCache.get(url);
+    }
     const res = await fetch(url, { headers: { 'X-Requested-With': 'spa' } });
     if (!res.ok) throw new Error(`Failed to fetch view: ${url}`);
-    return res.text();
+    const html = await res.text();
+    viewCache.set(url, html);
+    return html;
 }
 
 function findRoute(pathname) {

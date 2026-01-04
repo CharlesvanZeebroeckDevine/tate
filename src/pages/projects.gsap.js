@@ -79,18 +79,18 @@ export function buildProjectsIntroTimeline() {
 export function animateProjectCards() {
     // Skip animations if user prefers reduced motion or is on mobile
     if (shouldReduceMotion()) {
-        gsap.set(".project-card", { y: 0, opacity: 1 });
+        gsap.set(".project-card", { y: 0, opacity: 1, clearProps: "all" });
         return;
     }
 
     // Animate project cards once they're loaded
     gsap.from(".project-card", {
-        y: 50,
         opacity: 0,
         stagger: 0.1,
         duration: 0.8,
         ease: "power3.out",
-        delay: 0.8
+        delay: 0.8,
+        clearProps: "all"
     });
 }
 

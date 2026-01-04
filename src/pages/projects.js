@@ -7,7 +7,7 @@ let scrollTriggers = [];
 
 const SKILL_FILTERS = [
     { key: 'Prise de vue', label: 'Prise de vue' },
-    { key: 'Montage', label: 'Montage' },
+    { key: 'Réalisation', label: 'Réalisation' },
     { key: 'Motion', label: 'Motion' },
     { key: 'Sound-Design', label: 'Sound-Design' }
 ];
@@ -18,17 +18,10 @@ function getFilterFromUrl() {
     return urlParams.get('filter');
 }
 
-// Load and display projects
-async function loadProjects() {
-    try {
-        const response = await fetch('/projects.json');
-        const data = await response.json();
-        return data.projects;
-    } catch (error) {
-        console.error('Error loading projects:', error);
-        return [];
-    }
-}
+import { loadProjects } from '../data.js';
+
+// Load and display projects (using centralized loader)
+// loadProjects is imported from ../data.js
 
 // Create project card HTML
 function createProjectCard(project) {
@@ -323,6 +316,12 @@ export async function prepareHomeTransition() {
 
     // Animate mask down to cover the page before transition
     return new Promise((resolve) => {
+        // Skip animation on mobile
+        if (window.innerWidth <= 767) {
+            resolve();
+            return;
+        }
+
         gsap.set(mask, { display: 'block', y: '-100vh' });
         gsap.to(mask, {
             duration: 0.6,

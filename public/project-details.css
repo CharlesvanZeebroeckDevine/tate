@@ -280,7 +280,7 @@ input[type='range'] {
             "video"
             "description"
             "detail";
-        gap: 2rem;
+        gap: 0rem;
     }
 
     /* Assign grid areas to elements */
@@ -294,13 +294,24 @@ input[type='range'] {
         grid-area: meta;
         flex-direction: row;
         gap: 3rem;
+        margin: 0;
     }
 
     .parent-container,
     .format-v .parent-container {
         grid-area: video;
         width: 100%;
+        height: fit-content;
         align-items: center;
+        margin: 0;
+        margin-top: 2rem;
+    }
+
+    .format-h .project-video-container {
+        margin: 0;
+    }
+
+    .project-content {
         margin: 0;
     }
 
