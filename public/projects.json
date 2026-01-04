@@ -5,12 +5,11 @@
             "title": "THE CHOSEN ONE",
             "year": 2025,
             "client": "Kcorp",
-            "description": "E-sport content featuring dynamic sound design, motion graphics, and color grading for Kcorp's competitive gaming brand.",
+            "description": "E-sport content featuring dynamic sound design, motion graphics, and color  grading for Kcorp's competitive gaming brand.",
             "thumbnail": "./thumbnails/Kcorp.jpg",
             "skills": [
                 "Sound-Design",
-                "Motion",
-                "Montage"
+                "Motion"
             ],
             "collaborators": [
                 "Kcorp"
@@ -35,13 +34,13 @@
             "title": "Kaaris",
             "year": 2025,
             "client": "Kaaris",
-            "description": "Music videos for Kaaris featuring dynamic editing, urban aesthetics, and cinematic storytelling across multiple tracks.",
+            "description": "Music videos for Kaaris featuring dynamic editing, urban aesthetics, and  cinematic storytelling across multiple tracks.",
             "thumbnail": "./thumbnails/K2A.jpg",
             "skills": [
-                "Montage",
                 "Motion",
+                "Prise de vue",
                 "Sound-Design",
-                "Prise de vue"
+                "Réalisation"
             ],
             "collaborators": [
                 "Kaaris"
@@ -94,8 +93,9 @@
             "description": "Music video collaboration featuring dynamic editing and urban culture.",
             "thumbnail": "./thumbnails/Footcorner.jpg",
             "skills": [
-                "Montage",
-                "Sound-Design"
+                "Prise de vue",
+                "Sound-Design",
+                "Réalisation"
             ],
             "collaborators": [
                 "Djadja",
@@ -124,8 +124,8 @@
             "description": "Music video for Gin Khao with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/GinKhao.jpg",
             "skills": [
-                "Montage",
-                "Motion"
+                "Motion",
+                "Sound-Design"
             ],
             "collaborators": [
                 "Gin Khao"
@@ -147,13 +147,12 @@
         },
         {
             "id": 5,
-            "title": "Zoxii",
+            "title": "OTP_Lol",
             "year": 2024,
-            "client": "Zoxii",
+            "client": "OTP / ZOXI",
             "description": "Video for Zoxii featuring dynamic editing and urban aesthetics.",
             "thumbnail": "./thumbnails/Zoxi.jpg",
             "skills": [
-                "Montage",
                 "Motion"
             ],
             "collaborators": [
@@ -176,14 +175,14 @@
         },
         {
             "id": 8,
-            "title": "Steel",
+            "title": "SteelSeries",
             "year": 2025,
-            "client": "Steel",
+            "client": "SteelSeries",
             "description": "Music video for Steel with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/Steel.jpg",
             "skills": [
-                "Montage",
-                "Motion"
+                "Motion",
+                "Réalisation"
             ],
             "collaborators": [
                 "Steel"
@@ -211,7 +210,7 @@
             "description": "Gaming content for Rain GG with dynamic editing and visual effects.",
             "thumbnail": "./thumbnails/Raingg.jpg",
             "skills": [
-                "Montage",
+                "Motion",
                 "Sound-Design"
             ],
             "collaborators": [
@@ -240,14 +239,11 @@
             "description": "videos for Galions featuring dynamic editing and urban aesthetics.",
             "thumbnail": "./thumbnails/Gallions.jpg",
             "skills": [
-                "Montage",
                 "Motion",
-                "Sound-Design",
-                "Prise de vue"
+                "Sound-Design"
             ],
             "collaborators": [
-                "Galions",
-                "Robert"
+                "Galions"
             ],
             "category": "E-sport",
             "format": "v",
@@ -282,11 +278,14 @@
             "description": "Personal documentary project featuring storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Docu.jpg",
             "skills": [
+                "Prise de vue",
+                "Motion",
                 "Sound-Design",
-                "Montage",
-                "Prise de vue"
+                "Réalisation"
             ],
-            "collaborators": [],
+            "collaborators": [
+                "MJM Graphic Design"
+            ],
             "category": "Perso",
             "format": "h",
             "resolution": [
@@ -307,12 +306,11 @@
             "title": "Voyage au Japon",
             "year": 2025,
             "client": "Japon",
-            "description": "Travel documentary capturing the essence of Japanese culture through storytelling and atmospheric editing.",
+            "description": "Travel documentary capturing the essence of Japanese culture through  storytelling and atmospheric editing.",
             "thumbnail": "./thumbnails/Japan.jpg",
             "skills": [
-                "Sound-Design",
-                "Montage",
-                "Prise de vue"
+                "Prise de vue",
+                "Sound-Design"
             ],
             "collaborators": [],
             "category": "Perso",
@@ -343,10 +341,11 @@
             "description": "Juyru",
             "thumbnail": "./thumbnails/Juyru.jpg",
             "skills": [
-                "Prise de vue",
-                "Montage"
+                "Prise de vue"
             ],
-            "collaborators": [],
+            "collaborators": [
+                "MJM Graphic Design"
+            ],
             "category": "Perso",
             "format": "h",
             "resolution": [
@@ -367,14 +366,15 @@
             "title": "Peet Aftermovie",
             "year": 2025,
             "client": "Peet",
-            "description": "Peet",
+            "description": "Peet aftermovie pour son concert a la cigale",
             "thumbnail": "./thumbnails/Peet.jpg",
             "skills": [
-                "Sound-Design",
-                "Montage",
+                "Motion",
                 "Prise de vue"
             ],
-            "collaborators": [],
+            "collaborators": [
+                "Baco Music"
+            ],
             "category": "Music",
             "format": "h",
             "resolution": [
@@ -398,11 +398,12 @@
             "description": "?",
             "thumbnail": "./thumbnails/Perso.jpg",
             "skills": [
-                "Sound-Design",
-                "Montage",
+                "Motion",
                 "Prise de vue"
             ],
-            "collaborators": [],
+            "collaborators": [
+                "MJM Graphic Design"
+            ],
             "category": "Perso",
             "format": "h",
             "resolution": [
@@ -427,8 +428,7 @@
             "thumbnail": "./thumbnails/Rimey.jpg",
             "skills": [
                 "Sound-Design",
-                "Montage",
-                "Prise de vue"
+                "Motion"
             ],
             "collaborators": [],
             "category": "E-sport",
@@ -455,10 +455,11 @@
             "thumbnail": "./thumbnails/EJ.jpg",
             "skills": [
                 "Sound-Design",
-                "Montage",
-                "Prise de vue"
+                "Motion"
             ],
-            "collaborators": [],
+            "collaborators": [
+                "MJM Graphic Design"
+            ],
             "category": "Perso",
             "format": "h",
             "resolution": [
